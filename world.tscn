@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://jmvm0kcsv4s3"]
+
+[ext_resource type="Script" uid="uid://b8bhffxbnhxdh" path="res://world.gd" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://cvtevcuaigukd" path="res://circle.tscn" id="2_fj7yv"]
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_f3sb7")
+circle_scene = ExtResource("2_fj7yv")
+camera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
