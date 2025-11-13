@@ -1,13 +1,20 @@
-extends RigidBody2D
+extends Node2D
+class_name Circle
 
-@export var radius: float = 10.0;
+@export var texture: Texture2D;
 
-@onready var collision = $Collision;
-@onready var visual = $Visual;
+@export var radius: float;
+
+@onready var sprite = $Sprite2D
+@onready var collision_shape = $CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if collision.shape is CircleShape2D:
-		collision.shape.radius = radius;
-		
-	visual.radius = radius;
+	var tex_size = texture.get_size();
+	var target_world_diameter = radius * 2.0;
+	var scale_factor = target_world_diameter / tex_size.x;
+	sprite.texture = texture;
+	sprite.scale = Vector2(scale_factor, scale_factor);
+	if collision_shape.shape is CircleShape2D:
+		collision_shape.shape.radius = radius;
+	
