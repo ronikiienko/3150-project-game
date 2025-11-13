@@ -12,8 +12,12 @@ config_version=5
 
 config/name="3150-project-game"
 run/main_scene="uid://erxpp08t0nnp"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="3150-project-game"
 
 [editor]
 
