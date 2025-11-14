@@ -21,6 +21,6 @@ offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
 
-[node name="Planet" parent="." instance=ExtResource("2_fj7yv")]
+[node name="Circle" parent="." instance=ExtResource("2_fj7yv")]
 texture = ExtResource("4_036b0")
-radius = 11.18
+radius = 5.6850000000000005
