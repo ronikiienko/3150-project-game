@@ -2,6 +2,9 @@
 ## Does not manage bullet creation - only emits signal
 class_name Weapon extends Node2D
 
+## This is not used by weapon itself. It's just a way to associate weapon
+## with bullet it shoots
+@export var bullet: PackedScene
 
 ## Bullets per second
 @export var bps: float = 20
@@ -54,6 +57,11 @@ func topup_magazine(amount: int) -> int:
 	_left_to_load = to_reload
 	
 	return to_reload
+
+## Unload all bullets from magazine. Returns number of bullets that were unloaded
+func unload() -> int:
+	_reloading = false
+	return _ammo
 		
 			
 func _spawn_bullet() -> FireBulletData:

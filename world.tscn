@@ -34,9 +34,9 @@ offset_bottom = 23.0
 
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("3_tlwt5")
-bps = 9.77
+bps = 28.08
 projectile_impulse = 10000.0
-mag_size = 20
+mag_size = 70
 metadata/_custom_type_script = "uid://b780jscnop4tj"
 
 [connection signal="bullet_loaded" from="Weapon" to="." method="_on_weapon_bullet_loaded"]
