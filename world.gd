@@ -35,6 +35,10 @@ func _input(event):
 				weapon.start_shooting(mouse_world_pos.normalized())
 			else:
 				weapon.end_shooting()
+				
+	if event is InputEventKey:
+		if event.pressed and event.keycode == Key.KEY_R:
+			weapon.topup_magazine(weapon.mag_size)
 
 @onready var weapon = $Weapon
 
@@ -71,3 +75,21 @@ func _physics_process(delta: float):
 			b2.apply_force(-force)
 			
 	
+
+
+func _on_weapon_fire_bullets(bullets: Array[FireBulletData]) -> void:
+	for bullet_data in bullets:
+		var bullet = circle_scene.instantiate() as Circle
+		bullet.position = Vector2.ZERO
+		bullet.apply_force(bullet_data.impulse)
+		bullet.radius = 2
+		add_child(bullet)
+		
+
+
+func _on_weapon_topup_finished() -> void:
+	print("topup finished!!!")
+
+
+func _on_weapon_bullet_loaded(current_ammo: int, left_to_load: int) -> void:
+	print("Loaded bullet: ", current_ammo, "Left to load ", left_to_load)

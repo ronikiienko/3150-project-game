@@ -28,17 +28,11 @@ offset_right = 1147.0
 offset_bottom = 76.0
 autowrap_mode = 2
 
-[node name="AmmoInMagazine" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Planet" parent="." instance=ExtResource("2_fj7yv")]
+radius = 11.18
 
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("3_tlwt5")
-bps = 9.77
-projectile_impulse = 10000.0
-mag_size = 20
 metadata/_custom_type_script = "uid://b780jscnop4tj"
 
-[connection signal="bullet_loaded" from="Weapon" to="." method="_on_weapon_bullet_loaded"]
 [connection signal="fire_bullets" from="Weapon" to="." method="_on_weapon_fire_bullets"]
-[connection signal="topup_finished" from="Weapon" to="." method="_on_weapon_topup_finished"]
