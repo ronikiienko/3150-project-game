@@ -39,6 +39,12 @@ func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == Key.KEY_R:
 			weapon.topup_magazine(weapon.mag_size)
+			
+	if event is InputEventKey:
+		if event.pressed and event.keycode == Key.KEY_ESCAPE:
+			get_tree().paused = true
+			$PauseMenu.visible = true
+			
 
 @onready var weapon = $Weapon
 

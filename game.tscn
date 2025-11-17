@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://jmvm0kcsv4s3"]
+
+[ext_resource type="Script" uid="uid://b8bhffxbnhxdh" path="res://game.gd" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://cx71i7xkmjuxm" path="res://circle.tscn" id="2_fc0e3"]
+[ext_resource type="Script" uid="uid://b780jscnop4tj" path="res://weapon/weapon.gd" id="3_7jktm"]
+[ext_resource type="Script" uid="uid://cqn6v7xglfadn" path="res://pause_menu.gd" id="4_fc0e3"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_feb5d")
+circle_scene = ExtResource("2_fc0e3")
+camera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FpsLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="NumObjectsLabel" type="Label" parent="CanvasLayer"]
+offset_left = 1107.0
+offset_top = 53.0
+offset_right = 1147.0
+offset_bottom = 76.0
+autowrap_mode = 2
+
+[node name="AmmoInMagazine" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("3_7jktm")
+bps = 28.08
+projectile_impulse = 10000.0
+mag_size = 70
+metadata/_custom_type_script = "uid://b780jscnop4tj"
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+script = ExtResource("4_fc0e3")
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 11
+
+[node name="Resume" type="Button" parent="PauseMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Main menu" type="Button" parent="PauseMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main menu"
+
+[node name="Quit game" type="Button" parent="PauseMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit game"
+
+[connection signal="bullet_loaded" from="Weapon" to="." method="_on_weapon_bullet_loaded"]
+[connection signal="fire_bullets" from="Weapon" to="." method="_on_weapon_fire_bullets"]
+[connection signal="topup_finished" from="Weapon" to="." method="_on_weapon_topup_finished"]
+[connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Main menu" to="PauseMenu" method="_on_main_menu_pressed"]

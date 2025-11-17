@@ -1,6 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b22oi0c726lb0"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqa2u"]
-
-[resource]
-Button/styles/focus = SubResource("StyleBoxFlat_fqa2u")
