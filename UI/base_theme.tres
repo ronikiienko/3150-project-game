@@ -1,6 +1,22 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b22oi0c726lb0"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b22oi0c726lb0"]
 
 [ext_resource type="FontVariation" uid="uid://tnijlutsm21a" path="res://UI/font.tres" id="1_senvt"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_senvt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_senvt"]
+bg_color = Color(0, 0.2918187, 0.64219666, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l30ol"]
+bg_color = Color(0, 0.2274878, 0.51184934, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugxw7"]
+bg_color = Color(6.738305e-07, 0.2156826, 0.49002975, 1)
+
 [resource]
 default_font = ExtResource("1_senvt")
+Button/font_sizes/font_size = 36
+Button/styles/focus = SubResource("StyleBoxEmpty_senvt")
+Button/styles/hover = SubResource("StyleBoxFlat_senvt")
+Button/styles/normal = SubResource("StyleBoxFlat_l30ol")
+Button/styles/pressed = SubResource("StyleBoxFlat_ugxw7")
