@@ -50,7 +50,6 @@ metadata/_custom_type_script = "uid://b780jscnop4tj"
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_ryrav")
-speed_button_group = ExtResource("3_fc0e3")
 
 [node name="GameOverview" type="MarginContainer" parent="HUD"]
 anchors_preset = 1
@@ -146,17 +145,25 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("3_fc0e3")
-text = "0.2"
+text = "0.1
+"
 
 [node name="Speed2" type="Button" parent="HUD/MarginContainer2/SpeedControls"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("3_fc0e3")
-text = "0.5"
+text = "0.2
+"
 
 [node name="Speed3" type="Button" parent="HUD/MarginContainer2/SpeedControls"]
 custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_fc0e3")
+text = "0.5"
+
+[node name="Speed4" type="Button" parent="HUD/MarginContainer2/SpeedControls"]
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
@@ -202,6 +209,10 @@ text = "Quit game"
 [connection signal="bullet_loaded" from="Weapon" to="." method="_on_weapon_bullet_loaded"]
 [connection signal="fire_bullets" from="Weapon" to="." method="_on_weapon_fire_bullets"]
 [connection signal="topup_finished" from="Weapon" to="." method="_on_weapon_topup_finished"]
+[connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed1" to="HUD" method="_on_speed_1_pressed"]
+[connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed2" to="HUD" method="_on_speed_2_pressed"]
+[connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed3" to="HUD" method="_on_speed_3_pressed"]
+[connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed4" to="HUD" method="_on_speed_4_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Main menu" to="PauseMenu" method="_on_main_menu_pressed"]
