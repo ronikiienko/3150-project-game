@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://erxpp08t0nnp"]
+[gd_scene load_steps=3 format=3 uid="uid://erxpp08t0nnp"]
 
 [ext_resource type="Script" uid="uid://drlfyofmawkpf" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Theme" uid="uid://b22oi0c726lb0" path="res://theme/base_theme.tres" id="2_0xm2m"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ig7tw")
@@ -8,17 +9,19 @@ script = ExtResource("1_ig7tw")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 20.905)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -265.5
-offset_top = -117.5
+offset_top = -202.0
 offset_right = 265.5
-offset_bottom = 117.5
+offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_0xm2m")
 theme_override_constants/separation = 39
 
 [node name="BoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer"]
@@ -28,27 +31,34 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 61
 text = "ORBITAL DEFENSE"
+horizontal_alignment = 1
 
 [node name="SubHeader" type="Label" parent="CanvasLayer/VBoxContainer/BoxContainer"]
 layout_mode = 2
 text = "Phyics-based Tower Defense"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="Play" type="Button" parent="CanvasLayer/VBoxContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="CanvasLayer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Play"
 
-[node name="Options" type="Button" parent="CanvasLayer/VBoxContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="CanvasLayer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(395.685, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Options"
 
-[node name="Quit" type="Button" parent="CanvasLayer/VBoxContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="CanvasLayer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Quit
@@ -59,5 +69,5 @@ layout_mode = 2
 text = "Press ENTER or click Start"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
