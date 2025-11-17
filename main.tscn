@@ -1,20 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://erxpp08t0nnp"]
+[gd_scene load_steps=4 format=3 uid="uid://erxpp08t0nnp"]
 
 [ext_resource type="Script" uid="uid://drlfyofmawkpf" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Theme" uid="uid://b22oi0c726lb0" path="res://UI/base_theme.tres" id="2_0xm2m"]
-
-[sub_resource type="Gradient" id="Gradient_0xm2m"]
-colors = PackedColorArray(0.0003038735, 0.02289527, 0.21934935, 1, 0, 0, 0.0627451, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_h2yge"]
-gradient = SubResource("Gradient_0xm2m")
-width = 1269
-height = 1024
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1bvp3"]
-texture = SubResource("GradientTexture2D_h2yge")
+[ext_resource type="StyleBox" uid="uid://2oy150ry5c71" path="res://UI/menu_gradient_stylebox.tres" id="2_h2yge"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -32,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_1bvp3")
+theme_override_styles/panel = ExtResource("2_h2yge")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 20.905)
@@ -42,10 +30,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -285.5
-offset_top = -222.0
-offset_right = 245.5
-offset_bottom = 182.0
+offset_left = -265.5
+offset_top = -202.0
+offset_right = 265.5
+offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_0xm2m")
@@ -65,27 +53,23 @@ layout_mode = 2
 text = "Phyics-based Tower Defense"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 15
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
-layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 9
 
-[node name="Play" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "Play"
+text = "Play sandbox"
 
-[node name="Options" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(395.685, 0)
+[node name="Options" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Options"
 
-[node name="Quit" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Quit
@@ -96,5 +80,5 @@ layout_mode = 2
 text = "Press ENTER or click Start"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

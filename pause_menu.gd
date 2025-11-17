@@ -1,19 +1,25 @@
 extends CanvasLayer
 
+func _unpause():
+	self.visible = false
+	get_tree().paused = false
+	
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.is_pressed() and event.keycode == Key.KEY_ESCAPE:
+			print("Unpause")
+			_unpause()
+	
 
 func _on_resume_pressed() -> void:
-	pass # Replace with function body.
+	_unpause()
 
 
 func _on_main_menu_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_quit_game_pressed() -> void:
+	get_tree().quit()

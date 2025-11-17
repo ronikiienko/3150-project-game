@@ -1,7 +1,7 @@
 extends Control
 
 func _start_game():
-	get_tree().change_scene_to_file("res://game.tscn")
+	get_tree().change_scene_to_file("res://sandbox_config.tscn")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

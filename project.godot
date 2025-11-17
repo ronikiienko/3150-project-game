@@ -35,3 +35,4 @@ theme/custom="uid://b22oi0c726lb0"
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0.017112708, 0.09060777, 1)
