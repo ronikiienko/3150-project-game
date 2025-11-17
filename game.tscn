@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://jmvm0kcsv4s3"]
+[gd_scene load_steps=13 format=3 uid="uid://jmvm0kcsv4s3"]
 
 [ext_resource type="Script" uid="uid://b8bhffxbnhxdh" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="Script" uid="uid://b780jscnop4tj" path="res://weapon/weapon.gd" id="3_7jktm"]
 [ext_resource type="ButtonGroup" uid="uid://d1d14i3iiqjg0" path="res://UI/speed_button_group.tres" id="3_fc0e3"]
+[ext_resource type="Script" uid="uid://bf4h56bsb2v0" path="res://hud.gd" id="3_ryrav"]
 [ext_resource type="Script" uid="uid://cqn6v7xglfadn" path="res://pause_menu.gd" id="4_fc0e3"]
 
 [sub_resource type="Theme" id="Theme_feb5d"]
@@ -48,6 +49,8 @@ mag_size = 70
 metadata/_custom_type_script = "uid://b780jscnop4tj"
 
 [node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_ryrav")
+speed_button_group = ExtResource("3_fc0e3")
 
 [node name="GameOverview" type="MarginContainer" parent="HUD"]
 anchors_preset = 1
@@ -184,6 +187,10 @@ theme_override_constants/separation = 11
 layout_mode = 2
 text = "Resume"
 
+[node name="Restart" type="Button" parent="PauseMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
 [node name="Main menu" type="Button" parent="PauseMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main menu"
@@ -196,5 +203,6 @@ text = "Quit game"
 [connection signal="fire_bullets" from="Weapon" to="." method="_on_weapon_fire_bullets"]
 [connection signal="topup_finished" from="Weapon" to="." method="_on_weapon_topup_finished"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Main menu" to="PauseMenu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Quit game" to="PauseMenu" method="_on_quit_game_pressed"]

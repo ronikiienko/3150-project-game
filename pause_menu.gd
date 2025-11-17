@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+
+
 func _unpause():
 	self.visible = false
 	get_tree().paused = false
@@ -23,3 +25,8 @@ func _on_main_menu_pressed() -> void:
 
 func _on_quit_game_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_restart_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://sandbox_config.tscn")
