@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://b22oi0c726lb0"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b22oi0c726lb0"]
 
 [ext_resource type="FontVariation" uid="uid://tnijlutsm21a" path="res://UI/font.tres" id="1_senvt"]
 
@@ -37,6 +37,20 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76sb2"]
+bg_color = Color(0.022625534, 0.039650913, 0.06701507, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tj625"]
+bg_color = Color(0.061434038, 0.12135691, 0.17990586, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [resource]
 default_font = ExtResource("1_senvt")
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -62,3 +76,5 @@ Button/styles/focus = SubResource("StyleBoxEmpty_senvt")
 Button/styles/hover = SubResource("StyleBoxFlat_senvt")
 Button/styles/normal = SubResource("StyleBoxFlat_l30ol")
 Button/styles/pressed = SubResource("StyleBoxFlat_ugxw7")
+Panel/styles/panel = SubResource("StyleBoxFlat_76sb2")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_tj625")

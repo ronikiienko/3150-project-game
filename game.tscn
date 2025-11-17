@@ -1,13 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://jmvm0kcsv4s3"]
+[gd_scene load_steps=7 format=3 uid="uid://jmvm0kcsv4s3"]
 
 [ext_resource type="Script" uid="uid://b8bhffxbnhxdh" path="res://game.gd" id="1_feb5d"]
-[ext_resource type="PackedScene" uid="uid://cx71i7xkmjuxm" path="res://circle.tscn" id="2_fc0e3"]
 [ext_resource type="Script" uid="uid://b780jscnop4tj" path="res://weapon/weapon.gd" id="3_7jktm"]
 [ext_resource type="Script" uid="uid://cqn6v7xglfadn" path="res://pause_menu.gd" id="4_fc0e3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feb5d"]
+bg_color = Color(0.0627451, 0.12156863, 0.18039216, 0.43529412)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_feb5d"]
+Label/font_sizes/font_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc0e3"]
+bg_color = Color(0.0627451, 0.12156863, 0.18039216, 0.827451)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_feb5d")
-circle_scene = ExtResource("2_fc0e3")
 camera = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -18,6 +33,81 @@ bps = 28.08
 projectile_impulse = 10000.0
 mag_size = 70
 metadata/_custom_type_script = "uid://b780jscnop4tj"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_feb5d")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = SubResource("Theme_feb5d")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="Header" type="Label" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Game overview"
+
+[node name="ScoreContainer" type="HBoxContainer" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScoreContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Score:"
+
+[node name="Score" type="Label" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScoreContainer"]
+custom_minimum_size = Vector2(57.406, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="TimeContainer" type="HBoxContainer" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Game time:"
+
+[node name="Time" type="Label" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimeContainer"]
+layout_mode = 2
+text = "00:00"
+
+[node name="WavesContainer" type="HBoxContainer" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/WavesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Waves launched:"
+
+[node name="Waves" type="Label" parent="HUD/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/WavesContainer"]
+layout_mode = 2
+text = "0"
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 2
@@ -30,6 +120,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fc0e3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/PanelContainer"]
 custom_minimum_size = Vector2(350, 0)

@@ -1,8 +1,16 @@
 extends Node2D
 
-@export var circle_scene: PackedScene
+enum Difficulty { EASY, MEDIUM, DIFFICULT }
+
+var circle_scene = preload("res://circle.tscn")
+
 @export var camera: Camera2D;
 @export var zoom_speed: float = 0.1;
+@export var difficulty: Difficulty = Difficulty.EASY
+
+func _pause():
+	get_tree().paused = true
+	$PauseMenu.visible = true
 
 const CIRCLE_TEXTURE = preload("res://img.png")
 # Called when the node enters the scene tree for the first time.
@@ -39,8 +47,7 @@ func _input(event):
 			
 	if event is InputEventKey:
 		if event.pressed and event.keycode == Key.KEY_ESCAPE:
-			get_tree().paused = true
-			$PauseMenu.visible = true
+			_pause()
 			
 
 @onready var weapon = $Weapon
