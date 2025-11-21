@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="LevelConf" load_steps=6 format=3 uid="uid://cw0jw2a16efbw"]
+
+[ext_resource type="Script" uid="uid://bl7fgchouk2a2" path="res://level_config/bullet.gd" id="1_r46ho"]
+[ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="2_53d36"]
+[ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="3_hoek3"]
+
+[sub_resource type="Resource" id="Resource_r46ho"]
+script = ExtResource("1_r46ho")
+metadata/_custom_type_script = "uid://bl7fgchouk2a2"
+
+[sub_resource type="Resource" id="Resource_kt4nf"]
+script = ExtResource("3_hoek3")
+name = "Sucker blaster"
+bps = 14.488999999999999
+spread_degrees = 30.566
+impulse = 10000.0
+mag_size = 5
+bullet = SubResource("Resource_r46ho")
+bullets_available = 100
+metadata/_custom_type_script = "uid://cdo32m7p660ra"
+
+[resource]
+script = ExtResource("2_53d36")
+available_weapons = Array[ExtResource("3_hoek3")]([SubResource("Resource_kt4nf")])
+metadata/_custom_type_script = "uid://bjald2idwgjl"

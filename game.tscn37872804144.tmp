@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://jmvm0kcsv4s3"]
+[gd_scene load_steps=13 format=3 uid="uid://jmvm0kcsv4s3"]
 
 [ext_resource type="Script" uid="uid://b8bhffxbnhxdh" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="ButtonGroup" uid="uid://d1d14i3iiqjg0" path="res://UI/speed_button_group.tres" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://bf4h56bsb2v0" path="res://hud.gd" id="3_ryrav"]
 [ext_resource type="Script" uid="uid://cqn6v7xglfadn" path="res://pause_menu.gd" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://dgervki1v202d" path="res://gun/gun.gd" id="5_7jktm"]
-[ext_resource type="Texture2D" uid="uid://drixkkbwrggr3" path="res://img.png" id="6_ryrav"]
 
 [sub_resource type="Theme" id="Theme_feb5d"]
 Label/font_sizes/font_size = 20
@@ -202,13 +201,6 @@ text = "Quit game"
 
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("5_7jktm")
-impulse = 1000.0
-bullets_available = 1000
-bullet_mass = 1.0
-bullet_radius = 1.0
-bullet_texture = ExtResource("6_ryrav")
-bps = 1.0
-rotation_speed = 8.965
 metadata/_custom_type_script = "uid://dgervki1v202d"
 
 [connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed1" to="HUD" method="_on_speed_1_pressed"]
@@ -219,9 +211,3 @@ metadata/_custom_type_script = "uid://dgervki1v202d"
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Main menu" to="PauseMenu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Quit game" to="PauseMenu" method="_on_quit_game_pressed"]
-[connection signal="bullets_changed" from="Gun" to="." method="_on_gun_bullets_changed"]
-[connection signal="magazine_changed" from="Gun" to="." method="_on_gun_magazine_changed"]
-[connection signal="reload_finished" from="Gun" to="." method="_on_gun_reload_finished"]
-[connection signal="reload_started" from="Gun" to="." method="_on_gun_reload_started"]
-[connection signal="shooting_started" from="Gun" to="." method="_on_gun_shooting_started"]
-[connection signal="shooting_stopped" from="Gun" to="." method="_on_gun_shooting_stopped"]
