@@ -10,3 +10,6 @@ class_name GunConf
 @export var icon: Texture2D
 @export var bullet: BulletConf
 @export var bullets_available: int = 0
+@export var texture: Texture2D
+@export var size: float = 1
+@export var rotation_speed_degrees: float

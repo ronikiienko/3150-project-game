@@ -78,10 +78,11 @@ func update(delta: float):
 		count += 1
 		_fire_timer -= one_bullet_time
 		_ammo -= 1
-		
-	emit_signal("magazine_changed", _ammo)
 	
-	emit_signal("fire_bullets", count)
+	if count > 0:
+		emit_signal("magazine_changed", _ammo)
+		emit_signal("fire_bullets", count)
+	
 		
 signal fire_bullets(count: int)
 signal reload_finished()

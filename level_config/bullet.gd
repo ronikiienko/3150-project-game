@@ -6,4 +6,4 @@ class_name BulletConf
 @export var radius: float
 @export var time_to_live: float
 @export var icon: Texture2D
-@export var sprite: Texture2D
+@export var texture: Texture2D
