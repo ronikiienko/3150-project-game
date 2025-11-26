@@ -21,11 +21,14 @@ var active_gun: Gun
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var attack_system = AttackSystem.new()
+	attack_system.attack_schedule = level_conf.attack_schedule
+	
 	for gun_conf in level_conf.available_guns:
 		print("Gun conf")
 		var typed_gun_conf = gun_conf as GunConf
 		var gun_node = GunScene.instantiate() as Gun
-		gun_node.load_from_conf(typed_gun_conf)
+		gun_node.gun_conf = typed_gun_conf
 
 		gun_nodes.push_back(gun_node)
 		
@@ -45,13 +48,13 @@ func switch_gun(index: int):
 	active_gun = gun_nodes[index]
 	active_gun.activate()
 	HUD.update_available_guns(gun_nodes)
-	HUD.update_bullet_state(active_gun.in_mag_count(), active_gun.bullets_available)
+	HUD.update_bullet_state(active_gun.in_mag_count(), active_gun.inventory_count())
 	
 	active_gun.connect("magazine_changed", _on_magazine_changed)
 	active_gun.connect("bullets_changed", _on_total_left_changed)
 		
 func _on_magazine_changed(new_count: int):
-	HUD.update_bullet_state(new_count, active_gun.bullets_available)
+	HUD.update_bullet_state(new_count, active_gun.inventory_count())
 	
 func _on_total_left_changed(new_count: int):
 	HUD.update_bullet_state(active_gun.in_mag_count(), new_count)

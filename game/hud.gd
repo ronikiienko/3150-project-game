@@ -29,7 +29,7 @@ func update_available_guns(guns: Array[Gun]):
 		var gun = guns[i]
 		
 		var btn := Button.new()
-		btn.text = gun.gun_name
+		btn.text = gun.name()
 		btn.toggle_mode = true
 		btn.button_group = group
 		btn.connect("pressed", Callable(self, "_on_gun_button_pressed").bind(i))
