@@ -8,6 +8,8 @@ load_path = "res://.godot/imported/img.png-4c465fa38e4974dfeba7721e2ca1cc84.ctex
 [sub_resource type="CircleShape2D" id="CircleShape2D_ot13w"]
 
 [node name="RigidBody2D" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_whlr7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

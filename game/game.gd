@@ -25,23 +25,7 @@ func _ready() -> void:
 		print("Gun conf")
 		var typed_gun_conf = gun_conf as GunConf
 		var gun_node = GunScene.instantiate() as Gun
-		gun_node.texture = typed_gun_conf.texture
-		gun_node.size = typed_gun_conf.size
-		gun_node.spread_radians = deg_to_rad(typed_gun_conf.spread_degrees) 
-		gun_node.impulse = typed_gun_conf.impulse
-		gun_node.bullets_available = typed_gun_conf.bullets_available
-		gun_node.bullet_mass = typed_gun_conf.bullet.mass
-		gun_node.bullet_gravity = typed_gun_conf.bullet.gravity
-		gun_node.bullet_radius = typed_gun_conf.bullet.radius
-		gun_node.bullet_texture = typed_gun_conf.bullet.texture
-		
-		gun_node.bps = typed_gun_conf.bps
-		
-		gun_node.mag_size = typed_gun_conf.mag_size
-		gun_node.full_reload_time = typed_gun_conf.full_reload_time
-		gun_node.rotation_speed = deg_to_rad(typed_gun_conf.rotation_speed_degrees)
-		
-		gun_node.gun_name = gun_conf.name
+		gun_node.load_from_conf(typed_gun_conf)
 
 		gun_nodes.push_back(gun_node)
 		
@@ -61,7 +45,6 @@ func switch_gun(index: int):
 	active_gun = gun_nodes[index]
 	active_gun.activate()
 	HUD.update_available_guns(gun_nodes)
-	print("Switched. changed")
 	HUD.update_bullet_state(active_gun.in_mag_count(), active_gun.bullets_available)
 	
 	active_gun.connect("magazine_changed", _on_magazine_changed)
@@ -131,3 +114,7 @@ func _physics_process(delta: float):
 
 func _on_hud_gun_switched(index: int) -> void:
 	switch_gun(index)
+
+
+func _on_hud_sim_speed_changed(new_speed: float) -> void:
+	Engine.time_scale = new_speed

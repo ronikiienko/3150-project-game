@@ -1,5 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dapmp5uavevyb"]
+[gd_scene load_steps=3 format=3 uid="uid://dapmp5uavevyb"]
 
 [ext_resource type="PackedScene" uid="uid://cx71i7xkmjuxm" path="res://body/body.tscn" id="1_y4yru"]
+[ext_resource type="Script" uid="uid://c024brc5aifxc" path="res://gun/bullet.gd" id="2_e3deb"]
 
 [node name="RigidBody2D" instance=ExtResource("1_y4yru")]
+script = ExtResource("2_e3deb")
+time_to_live = 20.0
+contacts_to_live = 10
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

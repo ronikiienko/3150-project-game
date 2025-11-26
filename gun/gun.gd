@@ -118,3 +118,21 @@ signal reload_finished()
 
 func in_mag_count() -> int:
 	return _mechanics.left_in_magazine()
+	
+func load_from_conf(conf: GunConf):
+	gun_name = conf.name
+	texture = conf.texture
+	size = conf.size
+	spread_radians = deg_to_rad(conf.spread_degrees)
+	impulse = conf.impulse
+	bullets_available = conf.bullets_available
+
+	bullet_mass = conf.bullet.mass
+	bullet_gravity = conf.bullet.gravity
+	bullet_radius = conf.bullet.radius
+	bullet_texture = conf.bullet.texture
+
+	bps = conf.bps
+	mag_size = conf.mag_size
+	full_reload_time = conf.full_reload_time
+	rotation_speed = deg_to_rad(conf.rotation_speed_degrees)

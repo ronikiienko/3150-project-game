@@ -1,19 +1,19 @@
 extends CanvasLayer
 
-#func _on_speed_1_pressed() -> void:
-	#Engine.time_scale = 0.1
-#
-#
-#func _on_speed_2_pressed() -> void:
-	#Engine.time_scale = 0.2
-#
-#
-#func _on_speed_3_pressed() -> void:
-	#Engine.time_scale = 0.5
-#
-#
-#func _on_speed_4_pressed() -> void:
-	#Engine.time_scale = 1.0
+func _on_speed_1_pressed() -> void:
+	emit_signal("sim_speed_changed", 0.1)
+
+
+func _on_speed_2_pressed() -> void:
+	emit_signal("sim_speed_changed", 0.2)
+
+
+func _on_speed_3_pressed() -> void:
+	emit_signal("sim_speed_changed", 0.5)
+
+
+func _on_speed_4_pressed() -> void:
+	emit_signal("sim_speed_changed", 1.0)
 	
 var guns: Array[Gun]
 
@@ -47,3 +47,4 @@ func update_bullet_state(in_mag: int, mag_size: int):
 	mag_size_label.text = str(mag_size)
 
 signal gun_switched(new_gun: int)
+signal sim_speed_changed(new_speed: float)

@@ -39,6 +39,9 @@ func load_bullets(amount: int) -> int:
 	if amount <= 0:
 		return 0
 		
+	if _reloading:
+		return 0
+		
 	var to_reload = min(amount, empty_slots)
 	_reloading = true
 	_reload_timer = 0.0
