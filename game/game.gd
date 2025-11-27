@@ -11,7 +11,7 @@ func _pause():
 	get_tree().paused = true
 	$PauseMenu.visible = true
 
-var GunScene = preload("res://gun/gun.tscn")
+var GunScene = preload("res://game/gun/gun.tscn")
 
 var gun_nodes: Array[Gun] = []
 var active_gun: Gun

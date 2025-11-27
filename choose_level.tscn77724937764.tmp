@@ -14,7 +14,6 @@ grow_vertical = 2
 script = ExtResource("1_yl06s")
 game_scene = ExtResource("2_wuosb")
 levels_container = NodePath("VBoxContainer/Levels")
-levels_dir_path = "res://levels"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

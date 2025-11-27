@@ -5,7 +5,7 @@ class_name Gun extends Node2D
 var _mechanics: GunMechanics
 var _aiming: GunAiming
 
-var _bullet_scene := preload("res://gun/bullet.tscn")
+var _bullet_scene := preload("res://game/gun/bullet.tscn")
 
 var _sprite: Sprite2D
 
