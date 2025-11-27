@@ -5,7 +5,6 @@ enum Difficulty { EASY, MEDIUM, DIFFICULT }
 
 @export var camera: Camera2D;
 @export var zoom_speed: float = 0.1;
-@export var difficulty: Difficulty = Difficulty.EASY
 @export var level_conf: LevelConf
 
 func _pause():
@@ -23,6 +22,7 @@ var active_gun: Gun
 func _ready() -> void:
 	var attack_system = AttackSystem.new()
 	attack_system.attack_schedule = level_conf.attack_schedule
+	add_child(attack_system)
 	
 	for gun_conf in level_conf.available_guns:
 		print("Gun conf")
