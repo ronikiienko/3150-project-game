@@ -1,5 +1,5 @@
 extends Body
-
+class_name Bullet
 @export var time_to_live: float = 20.0
 @export var contacts_to_live: int = 10
 

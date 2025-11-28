@@ -11,7 +11,7 @@ var _sprite: Sprite2D
 
 func _fire_bullets_handler(count: int):
 	for i in range(count):		
-		var bullet = _bullet_scene.instantiate()
+		var bullet = _bullet_scene.instantiate() as Bullet
 		
 		bullet.texture = gun_conf.bullet.texture
 		bullet.radius = gun_conf.bullet.radius

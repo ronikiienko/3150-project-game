@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="LevelConf" load_steps=18 format=3 uid="uid://bxpwj4lwkvsdu"]
+[gd_resource type="Resource" script_class="LevelConf" load_steps=19 format=3 uid="uid://bxpwj4lwkvsdu"]
 
 [ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_8y4gf"]
 [ext_resource type="Script" uid="uid://bpmhw4lg2jrx5" path="res://level_config/asteroid.gd" id="2_qwunl"]
 [ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="3_i5fxq"]
+[ext_resource type="Texture2D" uid="uid://cbdwy4c2x2bmr" path="res://icon.svg" id="3_qwunl"]
 [ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="4_bu65w"]
 [ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="5_e3f6t"]
 [ext_resource type="Script" uid="uid://bl7fgchouk2a2" path="res://level_config/bullet.gd" id="6_wjskp"]
@@ -11,11 +12,16 @@
 
 [sub_resource type="Resource" id="Resource_vsp63"]
 script = ExtResource("2_qwunl")
+mass = 0.045
+gravity = 1.88
+radius = 2.27
+texture = ExtResource("3_qwunl")
 metadata/_custom_type_script = "uid://bpmhw4lg2jrx5"
 
 [sub_resource type="Resource" id="Resource_b686c"]
 script = ExtResource("3_i5fxq")
 asteroid = SubResource("Resource_vsp63")
+count = 85
 metadata/_custom_type_script = "uid://yxj0jnvultwm"
 
 [sub_resource type="Resource" id="Resource_hb504"]
@@ -30,7 +36,7 @@ metadata/_custom_type_script = "uid://chna4a4xykp28"
 
 [sub_resource type="Resource" id="Resource_j5wjh"]
 script = ExtResource("6_wjskp")
-mass = 1.0
+mass = 0.105
 gravity = 1.0
 radius = 1.0
 texture = ExtResource("7_c5uel")

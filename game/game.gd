@@ -87,12 +87,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		active_gun.reload()
 
 func _physics_process(delta: float):
-	#fps_label.text = "Fps: %d" % Engine.get_frames_per_second()
 	
 	var bodies = get_tree().get_nodes_in_group("bodies")
 	#num_objects_label.text = "Num objects: %d" % bodies.size()
 
-	var G = 5000.0  # gravity strength constant, tune this
+	var G = 500.0  # gravity strength constant, tune this
 	for i in bodies.size():
 		var b1 = bodies[i]
 		var p1 = b1.position
