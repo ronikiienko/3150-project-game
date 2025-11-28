@@ -74,6 +74,7 @@ func _input(event):
 			
 
 func _process(delta: float):
+	_cleanup(delta)
 	pass
 		
 func _unhandled_input(event: InputEvent) -> void:
@@ -120,3 +121,21 @@ func _on_hud_gun_switched(index: int) -> void:
 
 func _on_hud_sim_speed_changed(new_speed: float) -> void:
 	Engine.time_scale = new_speed
+	
+func _cleanup(delta: float):
+	for body in get_tree().get_nodes_in_group("bodies"):
+		var body_typed = body as Body
+		var dist_from_center = body_typed.position.length()
+		if dist_from_center > level_conf.world_radius:
+			body_typed.queue_free()
+			
+		if body is Bullet:
+			body.time_to_live -= delta
+			if body.time_to_live <= 0:
+				body.queue_free()
+				
+		if body is Asteroid:
+			body.time_to_live -= delta
+			if body.time_to_live <= 0:
+				body.queue_free()
+	pass

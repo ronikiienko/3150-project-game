@@ -46,10 +46,20 @@ func trigger_attack(attack: AttackConf) -> void:
 	#print("Triggering attack: %s (instance %d/%d)" % [attack.asteroid.name, 1, attack.count])
 	# Example: spawn one asteroid here
 	var asteroid_instance = _asteroid_scene.instantiate() as Asteroid
+	
+	var angle_rad = deg_to_rad(attack.angle_base_deg + randf_range(-attack.angle_spread_deg / 2, attack.angle_spread_deg / 2)) 
+	var distance = attack.distance_base + randf_range(-attack.distance_spread / 2, attack.distance_spread / 2)
+	var position = Vector2.from_angle(angle_rad) * distance
+	
+	var impulse_magnitude = attack.impulse_base + randf_range(-attack.impulse_spread / 2, attack.impulse_spread / 2)
+	var impulse_direction = -position.normalized()
+	var impulse = impulse_direction * impulse_magnitude
+	
 	asteroid_instance.radius = attack.asteroid.radius
 	asteroid_instance.texture = attack.asteroid.texture
 	asteroid_instance.mass = attack.asteroid.mass
-	asteroid_instance.position = Vector2(0.0, 100.0)
-	asteroid_instance.apply_force(Vector2(0.0, -200.0))
+	asteroid_instance.position = position
+	asteroid_instance.time_to_live = attack.asteroid_time_to_live_base + randf_range(-attack.asteroid_time_to_live_spread / 2, attack.asteroid_time_to_live_spread / 2)
+	asteroid_instance.apply_force(impulse)
 	
 	get_parent().add_child(asteroid_instance)

@@ -17,6 +17,7 @@ func _fire_bullets_handler(count: int):
 		bullet.radius = gun_conf.bullet.radius
 		bullet.mass = gun_conf.bullet.mass
 		bullet.position = _aiming.get_direction() * gun_conf.size / 2.0
+		bullet.time_to_live = gun_conf.bullet.time_to_live
 		
 		var rotation = _aiming.get_direction_rad()
 		

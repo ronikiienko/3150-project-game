@@ -14,14 +14,23 @@
 script = ExtResource("2_qwunl")
 mass = 0.045
 gravity = 1.88
-radius = 2.27
+radius = 0.675
 texture = ExtResource("3_qwunl")
 metadata/_custom_type_script = "uid://bpmhw4lg2jrx5"
 
 [sub_resource type="Resource" id="Resource_b686c"]
 script = ExtResource("3_i5fxq")
 asteroid = SubResource("Resource_vsp63")
+interval = 0.1
 count = 85
+angle_base_deg = 90.0
+angle_spread_deg = 90.0
+distance_base = 200.0
+distance_spread = 200.0
+impulse_base = 200.0
+impulse_spread = 200.0
+asteroid_time_to_live_base = 10.0
+asteroid_time_to_live_spread = 1.0
 metadata/_custom_type_script = "uid://yxj0jnvultwm"
 
 [sub_resource type="Resource" id="Resource_hb504"]
@@ -39,6 +48,7 @@ script = ExtResource("6_wjskp")
 mass = 0.105
 gravity = 1.0
 radius = 1.0
+time_to_live = 5.0
 texture = ExtResource("7_c5uel")
 metadata/_custom_type_script = "uid://bl7fgchouk2a2"
 

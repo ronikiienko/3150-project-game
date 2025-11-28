@@ -5,3 +5,5 @@
 
 [node name="RigidBody2D" instance=ExtResource("1_52xes")]
 script = ExtResource("2_er3qc")
+contacts_to_live = 10
+time_to_live = 100.0

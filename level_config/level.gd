@@ -6,3 +6,5 @@ class_name LevelConf
 @export var attack_schedule: AttackScheduleConf
 
 @export var name: String
+
+@export var world_radius: float = 1000
