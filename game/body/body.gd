@@ -15,6 +15,8 @@ func _ready() -> void:
 	var scale_factor = target_world_diameter / tex_size.x;
 	_sprite.texture = texture;
 	
+	continuous_cd = RigidBody2D.CCD_MODE_CAST_SHAPE
+	
 	_sprite.scale = Vector2(scale_factor, scale_factor);
 	add_to_group("bodies")
 	if _collision_shape.shape is CircleShape2D:

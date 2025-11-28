@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="LevelConf" load_steps=19 format=3 uid="uid://bxpwj4lwkvsdu"]
+[gd_resource type="Resource" script_class="LevelConf" load_steps=18 format=3 uid="uid://bxpwj4lwkvsdu"]
 
 [ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_8y4gf"]
 [ext_resource type="Script" uid="uid://bpmhw4lg2jrx5" path="res://level_config/asteroid.gd" id="2_qwunl"]
 [ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="3_i5fxq"]
-[ext_resource type="Texture2D" uid="uid://cbdwy4c2x2bmr" path="res://icon.svg" id="3_qwunl"]
 [ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="4_bu65w"]
 [ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="5_e3f6t"]
 [ext_resource type="Script" uid="uid://bl7fgchouk2a2" path="res://level_config/bullet.gd" id="6_wjskp"]
@@ -12,24 +11,23 @@
 
 [sub_resource type="Resource" id="Resource_vsp63"]
 script = ExtResource("2_qwunl")
-mass = 0.045
+mass = 1.105
 gravity = 1.88
-radius = 0.675
-texture = ExtResource("3_qwunl")
+radius = 1.41
+texture = ExtResource("7_c5uel")
 metadata/_custom_type_script = "uid://bpmhw4lg2jrx5"
 
 [sub_resource type="Resource" id="Resource_b686c"]
 script = ExtResource("3_i5fxq")
 asteroid = SubResource("Resource_vsp63")
-interval = 0.1
-count = 85
-angle_base_deg = 90.0
-angle_spread_deg = 90.0
-distance_base = 200.0
-distance_spread = 200.0
-impulse_base = 200.0
-impulse_spread = 200.0
-asteroid_time_to_live_base = 10.0
+interval = 3.0
+count = 1000
+angle_spread_deg = 360.0
+distance_base = 400.0
+distance_spread = 100.0
+impulse_base = 10000.0
+impulse_spread = 1500.0
+asteroid_time_to_live_base = 20.0
 asteroid_time_to_live_spread = 1.0
 metadata/_custom_type_script = "uid://yxj0jnvultwm"
 
@@ -48,15 +46,14 @@ script = ExtResource("6_wjskp")
 mass = 0.105
 gravity = 1.0
 radius = 1.0
-time_to_live = 5.0
+time_to_live = 100.0
 texture = ExtResource("7_c5uel")
 metadata/_custom_type_script = "uid://bl7fgchouk2a2"
 
 [sub_resource type="Resource" id="Resource_vef74"]
 script = ExtResource("5_e3f6t")
 name = "Peashooter"
-bps = 5.088
-spread_degrees = 17.653
+bps = 12.083
 impulse = 200.0
 mag_size = 20
 full_reload_time = 1.0
@@ -64,7 +61,7 @@ bullet = SubResource("Resource_j5wjh")
 bullets_available = 585
 texture = ExtResource("7_c5uel")
 size = 10.0
-rotation_speed_degrees = 180.0
+rotation_speed_degrees = 1000.0
 metadata/_custom_type_script = "uid://cdo32m7p660ra"
 
 [sub_resource type="Resource" id="Resource_y36n6"]
