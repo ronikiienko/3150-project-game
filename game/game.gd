@@ -74,6 +74,25 @@ func _process(delta: float):
 	_cleanup(delta)
 	if _attack_system.is_spawning_done():
 		get_tree().change_scene_to_file("res://game/endgame_screens/win.tscn")
+		
+	var dt_unscaled := delta / Engine.time_scale
+
+	var dir = Vector2.ZERO
+	if Input.is_action_pressed("move_left"):
+		dir.x -= 1
+	if Input.is_action_pressed("move_right"):
+		dir.x += 1
+	if Input.is_action_pressed("move_up"):
+		dir.y -= 1
+	if Input.is_action_pressed("move_down"):
+		dir.y += 1
+
+	if dir != Vector2.ZERO:
+		dir = dir.normalized()
+
+	_cam_vel = _cam_vel.lerp(dir * level_conf.camera_speed, level_conf.camera_acceleration * dt_unscaled)
+	camera.position += _cam_vel * dt_unscaled / camera.zoom.x
+		
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and event.pressed:
@@ -120,7 +139,9 @@ func _handle_gun_note(gun: Gun):
 	text += "Damage: %d" % bullet.damage
 
 	HUD.update_note(text)
-	
+
+var _cam_vel := Vector2.ZERO
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		active_gun.start_shooting()
@@ -160,6 +181,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				if p is Gun:
 					_handle_gun_note(p)
 				p = p.get_parent()
+				
 
 func _physics_process(delta: float):
 	var bodies = get_tree().get_nodes_in_group("bodies") as Array[Body]

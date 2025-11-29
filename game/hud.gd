@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _on_speed_1_pressed() -> void:
-	emit_signal("sim_speed_changed", 0.0)
+	emit_signal("sim_speed_changed", 0.01)
 
 
 func _on_speed_2_pressed() -> void:

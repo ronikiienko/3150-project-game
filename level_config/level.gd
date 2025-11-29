@@ -14,3 +14,6 @@ class_name LevelConf
 @export var health: int
 
 @export var description: String
+
+@export var camera_speed: float = 800.0
+@export var camera_acceleration: float = 10.0

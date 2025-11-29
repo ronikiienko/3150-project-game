@@ -156,7 +156,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("3_fc0e3")
-text = "0.01"
+text = "0.0"
 
 [node name="Speed2" type="Button" parent="HUD/SpeedControls"]
 custom_minimum_size = Vector2(80, 0)
