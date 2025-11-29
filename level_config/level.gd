@@ -11,6 +11,6 @@ class_name LevelConf
 
 @export var global_gravity: float = 100
 
-@export var health: float
+@export var health: int
 
 @export var description: String

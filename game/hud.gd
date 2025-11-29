@@ -53,5 +53,9 @@ func update_inventory(left: int):
 func update_health(left: int, full: int):	
 	health_label.text = str(left) + " / " + str(full)
 
+@export var score_label: Label
+func update_score(score: int):
+	score_label.text = str(score)
+
 signal gun_switched(new_gun: int)
 signal sim_speed_changed(new_speed: float)

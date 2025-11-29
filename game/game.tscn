@@ -57,12 +57,13 @@ camera = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("guns_selectoin_container", "mag_label", "inventory_label", "health_label")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("guns_selectoin_container", "mag_label", "inventory_label", "health_label", "score_label")]
 script = ExtResource("3_ryrav")
 guns_selectoin_container = NodePath("MarginContainer2/GunsSelection")
 mag_label = NodePath("MarginContainer/VBoxContainer/Magazine/Content")
 inventory_label = NodePath("MarginContainer/VBoxContainer/Inventory/Content")
 health_label = NodePath("MarginContainer/VBoxContainer/Health/Content")
+score_label = NodePath("GameOverview/PanelContainer/MarginContainer/VBoxContainer/ScoreContainer/Score")
 
 [node name="GameOverview" type="MarginContainer" parent="HUD"]
 anchors_preset = 1

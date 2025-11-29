@@ -18,7 +18,9 @@ func _process(delta: float) -> void:
 	
 
 func _on_body_entered(body: Node) -> void:
-	if body is Asteroid or body is Bullet:
+	if body is Asteroid:
+		body.take_damage(damage, self)
+	if body is Bullet:
 		body.take_damage(damage)
 		
 func take_damage(amount: int):

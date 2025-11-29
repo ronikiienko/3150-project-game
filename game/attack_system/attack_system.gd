@@ -60,6 +60,8 @@ func trigger_attack(attack: AttackConf) -> void:
 	asteroid_instance.gravity_strength = attack.asteroid.gravity
 	
 	get_parent().add_child(asteroid_instance)
+	
+	asteroid_instance.connect("destroyed", _asteroid_destroyed_handler)
 
 func is_spawning_done() -> bool:
 	for item in attack_schedule.attack_schedule_items:
@@ -67,3 +69,8 @@ func is_spawning_done() -> bool:
 			return false
 
 	return active_attacks.is_empty()
+	
+func _asteroid_destroyed_handler(asteroid: Asteroid, destroyed_by: Node):
+	emit_signal("asteroid_destroyed", asteroid, destroyed_by)
+	
+signal asteroid_destroyed(asteroid: Asteroid, destroyed_by: Node)

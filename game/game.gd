@@ -9,13 +9,20 @@ var _attack_system: AttackSystem
 var gun_nodes: Array[Gun] = []
 var active_gun: Gun
 
+var _score: int = 0
+
 @onready var HUD = $HUD
 
+func _asteroid_destroyed_handler(asteroid: Asteroid, destroyed_by: Node):
+	if destroyed_by is Bullet:
+		_score += asteroid.max_health
+		HUD.update_score(_score)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_attack_system = AttackSystem.new()
 	_attack_system.attack_schedule = level_conf.attack_schedule
+	_attack_system.connect("asteroid_destroyed", _asteroid_destroyed_handler)
 	
 	_health = level_conf.health
 	
