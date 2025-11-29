@@ -16,6 +16,7 @@ gravity = 1.88
 radius = 1.41
 texture = ExtResource("7_c5uel")
 health = 100
+damage = 20
 metadata/_custom_type_script = "uid://bpmhw4lg2jrx5"
 
 [sub_resource type="Resource" id="Resource_b686c"]
@@ -36,6 +37,7 @@ metadata/_custom_type_script = "uid://din6ml0qfdwfl"
 
 [sub_resource type="Resource" id="Resource_qwunl"]
 script = ExtResource("2_qwunl")
+damage = 20
 metadata/_custom_type_script = "uid://bpmhw4lg2jrx5"
 
 [sub_resource type="Resource" id="Resource_i5fxq"]
@@ -78,6 +80,7 @@ bullet = SubResource("Resource_j5wjh")
 bullets_available = 585
 texture = ExtResource("7_c5uel")
 size = 30.0
+collision_radius = 15.0
 rotation_speed_degrees = 1000.0
 metadata/_custom_type_script = "uid://cdo32m7p660ra"
 
@@ -87,4 +90,5 @@ available_guns = Array[ExtResource("5_e3f6t")]([SubResource("Resource_vef74")])
 attack_schedule = SubResource("Resource_ee6o4")
 name = "Test level"
 global_gravity = 300.0
+health = 100.0
 metadata/_custom_type_script = "uid://bjald2idwgjl"

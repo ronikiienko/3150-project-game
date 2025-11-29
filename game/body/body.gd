@@ -9,6 +9,7 @@ class_name Body
 
 var _sprite: Sprite2D
 var _collision_shape: CollisionShape2D
+var _collision_circle: CircleShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,6 +26,7 @@ func _ready() -> void:
 	var circle = CircleShape2D.new()
 	circle.radius = radius
 	_collision_shape.shape = circle
+	_collision_circle = circle
 	add_child(_collision_shape)
 	
 	contact_monitor = true

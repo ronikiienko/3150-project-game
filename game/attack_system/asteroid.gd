@@ -22,7 +22,6 @@ func _on_body_entered(body: Node) -> void:
 		body.take_damage(damage)
 		
 func take_damage(amount: int):
-	print("Asteroid took ", amount)
 	health -= amount
 	if health <= 0:
 		queue_free()

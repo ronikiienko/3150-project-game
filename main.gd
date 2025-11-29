@@ -12,7 +12,6 @@ func _on_play_pressed() -> void:
 	
 
 func _input(event: InputEvent):
-	if event is InputEventKey:
-		if event.keycode == Key.KEY_ENTER:
-			_start_game()
+	if event.is_action_pressed("start_game"):
+		_start_game()
 			

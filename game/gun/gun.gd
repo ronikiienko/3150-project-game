@@ -1,11 +1,9 @@
-class_name Gun extends Node2D
+class_name Gun extends Body
 
 @export var gun_conf: GunConf
 
 var _mechanics: GunMechanics
 var _aiming: GunAiming
-
-var _sprite: Sprite2D
 
 func _fire_bullets_handler(count: int):
 	for i in range(count):		
@@ -14,7 +12,7 @@ func _fire_bullets_handler(count: int):
 		bullet.texture = gun_conf.bullet.texture
 		bullet.radius = gun_conf.bullet.radius
 		bullet.mass = gun_conf.bullet.mass
-		bullet.position = _aiming.get_direction() * gun_conf.size / 2.0
+		bullet.position = position + _aiming.get_direction() * gun_conf.size / 2.0
 		bullet.time_to_live = gun_conf.bullet.time_to_live
 		bullet.health = gun_conf.bullet.health
 		bullet.damage = gun_conf.bullet.damage
@@ -41,8 +39,21 @@ func _reload_finished_handler():
 	emit_signal("reload_finished")
 
 func _ready() -> void:
+	mass = 10000000
+	
 	# Resources are references, editing bullets_available would change resource in every places it's used
 	gun_conf = gun_conf.duplicate(true)
+	
+	radius = gun_conf.size / 2
+	texture = gun_conf.texture
+	gravity_strength = 0.0
+	
+	super._ready()
+	
+	_sprite.z_index = 10
+	#freeze = true
+	
+	_collision_circle.radius = gun_conf.collision_radius
 	
 	_mechanics = GunMechanics.new()
 	_mechanics.bps = gun_conf.bps
@@ -56,14 +67,7 @@ func _ready() -> void:
 	_mechanics.connect("magazine_changed", _magazine_changed_handler)
 	_mechanics.connect("reload_finished", _reload_finished_handler)
 	
-	_sprite = Sprite2D.new()
-	_sprite.z_index = 10
-	_sprite.texture = gun_conf.texture
-	add_child(_sprite)
-	
-	if gun_conf.texture:
-		var tex_size = gun_conf.texture.get_size()
-		_sprite.scale = Vector2(gun_conf.size / tex_size.x, gun_conf.size / tex_size.y)
+	connect("body_entered", _on_body_entered_handler)
 	
 func start_shooting():
 	emit_signal("shooting_started")
@@ -83,7 +87,7 @@ func _process(delta: float) -> void:
 	_mechanics.update(delta)
 	_aiming.update(delta)
 		
-	var mouse_world_pos = get_viewport().get_camera_2d().get_global_mouse_position()
+	var mouse_world_pos = (get_viewport().get_camera_2d().get_global_mouse_position() - position).normalized()
 	_aiming.set_target(mouse_world_pos)
 	
 	_sprite.rotation = _aiming.get_direction_rad()
@@ -105,6 +109,7 @@ signal shooting_started()
 signal shooting_stopped()
 signal reload_started()
 signal reload_finished()
+signal collision(body: Node)
 
 func in_mag_count() -> int:
 	return _mechanics.left_in_magazine()
@@ -114,3 +119,6 @@ func inventory_count() -> int:
 	
 func name() -> String:
 	return gun_conf.name
+	
+func _on_body_entered_handler(body: Node):
+	emit_signal("collision", body)

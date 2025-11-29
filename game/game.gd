@@ -1,8 +1,5 @@
 extends Node2D
 
-enum Difficulty { EASY, MEDIUM, DIFFICULT }
-
-
 @export var camera: Camera2D;
 @export var zoom_speed: float = 0.1;
 @export var level_conf: LevelConf
@@ -19,6 +16,9 @@ var active_gun: Gun
 func _ready() -> void:
 	_attack_system = AttackSystem.new()
 	_attack_system.attack_schedule = level_conf.attack_schedule
+	
+	_health = level_conf.health
+	
 	add_child(_attack_system)
 	
 	for gun_conf in level_conf.available_guns:
@@ -41,6 +41,7 @@ func switch_gun(index: int):
 		active_gun.deactivate()
 		active_gun.disconnect("magazine_changed", _on_magazine_changed)
 		active_gun.disconnect("bullets_changed", _on_total_left_changed)
+		active_gun.disconnect("collision", _on_gun_collision)
 		
 	active_gun = gun_nodes[index]
 	active_gun.activate()
@@ -49,6 +50,7 @@ func switch_gun(index: int):
 	
 	active_gun.connect("magazine_changed", _on_magazine_changed)
 	active_gun.connect("bullets_changed", _on_total_left_changed)
+	active_gun.connect("collision", _on_gun_collision)
 		
 func _on_magazine_changed(new_count: int):
 	HUD.update_bullet_state(new_count, active_gun.inventory_count())
@@ -134,6 +136,9 @@ func _cleanup(delta: float):
 			if body.time_to_live <= 0:
 				body.queue_free()
 	pass
+	
+func _draw():
+	draw_circle(Vector2.ZERO, level_conf.world_radius, Color())
 
 
 func _pause():
@@ -141,7 +146,6 @@ func _pause():
 	$PauseMenu.visible = true
 	
 func _unpause():
-	print("Unpause")
 	get_tree().paused = false
 	$PauseMenu.visible = false 
 
@@ -159,8 +163,18 @@ func _on_pause_menu_restart() -> void:
 
 
 func _on_pause_menu_toggle_pause() -> void:
-	print("Toggle")
 	if get_tree().paused:
 		_unpause()
 	else:
 		_pause()
+
+var _health: int
+
+func _on_gun_collision(body: Node):
+	if body is Asteroid:
+		_health -= body.damage
+		body.queue_free()
+		
+	if _health <= 0:
+		get_tree().change_scene_to_file("res://game/endgame_screens/fail.tscn")
+	

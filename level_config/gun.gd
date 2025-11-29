@@ -2,6 +2,7 @@ extends Resource
 class_name GunConf
 
 @export var name: String
+@export var description: String
 @export_range(0.01, 100) var bps: float
 @export_range(0.0, 360) var spread_degrees: float
 @export var velocity: float
@@ -12,4 +13,5 @@ class_name GunConf
 @export var bullets_available: int = 0
 @export var texture: Texture2D
 @export var size: float = 1
+@export var collision_radius: float
 @export var rotation_speed_degrees: float

@@ -10,3 +10,7 @@ class_name LevelConf
 @export var world_radius: float = 1000
 
 @export var global_gravity: float = 100
+
+@export var health: float
+
+@export var description: String
