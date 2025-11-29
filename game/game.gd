@@ -7,7 +7,7 @@ enum Difficulty { EASY, MEDIUM, DIFFICULT }
 @export var zoom_speed: float = 0.1;
 @export var level_conf: LevelConf
 
-
+var _attack_system: AttackSystem
 
 var GunScene = preload("res://game/gun/gun.tscn")
 
@@ -16,11 +16,12 @@ var active_gun: Gun
 
 @onready var HUD = $HUD
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var attack_system = AttackSystem.new()
-	attack_system.attack_schedule = level_conf.attack_schedule
-	add_child(attack_system)
+	_attack_system = AttackSystem.new()
+	_attack_system.attack_schedule = level_conf.attack_schedule
+	add_child(_attack_system)
 	
 	for gun_conf in level_conf.available_guns:
 		print("Gun conf")
@@ -60,7 +61,8 @@ func _on_total_left_changed(new_count: int):
 
 func _process(delta: float):
 	_cleanup(delta)
-	pass
+	if _attack_system.is_spawning_done():
+		get_tree().change_scene_to_file("res://game/endgame_screens/win.tscn")
 		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
@@ -80,7 +82,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			camera.zoom *= Vector2(1 - zoom_speed, 1 - zoom_speed)
 
 func _physics_process(delta: float):
-	
 	var bodies = get_tree().get_nodes_in_group("bodies") as Array[Body]
 
 	var G = level_conf.global_gravity

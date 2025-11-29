@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	current_time += delta
-
+	
 	# Start attacks whose time has come
 	for item in attack_schedule.attack_schedule_items:
 		if not item.has_meta("started") and item.start_time <= current_time:
@@ -37,12 +37,8 @@ func start_attack(item: AttackScheduleItem) -> void:
 		"time_since_last": 0.0,
 		"times_done": 0
 	})
-	#print("Starting attack: %s at time %.2f" % [item.attack.asteroid.name, current_time])
 
-# Trigger the actual attack (spawn asteroids, bullets, etc.)
 func trigger_attack(attack: AttackConf) -> void:
-	#print("Triggering attack: %s (instance %d/%d)" % [attack.asteroid.name, 1, attack.count])
-	# Example: spawn one asteroid here
 	var asteroid_instance = Asteroid.new()
 	
 	var angle_rad = deg_to_rad(attack.angle_base_deg + randf_range(-attack.angle_spread_deg / 2, attack.angle_spread_deg / 2)) 
@@ -64,3 +60,10 @@ func trigger_attack(attack: AttackConf) -> void:
 	asteroid_instance.gravity_strength = attack.asteroid.gravity
 	
 	get_parent().add_child(asteroid_instance)
+
+func is_spawning_done() -> bool:
+	for item in attack_schedule.attack_schedule_items:
+		if not item.has_meta("started"):
+			return false
+
+	return active_attacks.is_empty()

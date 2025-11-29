@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="LevelConf" load_steps=19 format=3 uid="uid://bxpwj4lwkvsdu"]
+[gd_resource type="Resource" script_class="LevelConf" load_steps=18 format=3 uid="uid://bxpwj4lwkvsdu"]
 
 [ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_8y4gf"]
 [ext_resource type="Script" uid="uid://bpmhw4lg2jrx5" path="res://level_config/asteroid.gd" id="2_qwunl"]
 [ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="3_i5fxq"]
 [ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="4_bu65w"]
 [ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="5_e3f6t"]
-[ext_resource type="Texture2D" uid="uid://cbdwy4c2x2bmr" path="res://icon.svg" id="5_qwunl"]
 [ext_resource type="Script" uid="uid://bl7fgchouk2a2" path="res://level_config/bullet.gd" id="6_wjskp"]
 [ext_resource type="Texture2D" uid="uid://drixkkbwrggr3" path="res://img.png" id="7_c5uel"]
 [ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="8_7y8mn"]
@@ -22,7 +21,7 @@ metadata/_custom_type_script = "uid://bpmhw4lg2jrx5"
 [sub_resource type="Resource" id="Resource_b686c"]
 script = ExtResource("3_i5fxq")
 asteroid = SubResource("Resource_vsp63")
-count = 200
+interval = 1.005
 angle_spread_deg = 360.0
 distance_base = 300.0
 velocity_base = 100.0
@@ -35,35 +34,25 @@ script = ExtResource("1_8y4gf")
 attack = SubResource("Resource_b686c")
 metadata/_custom_type_script = "uid://din6ml0qfdwfl"
 
-[sub_resource type="Resource" id="Resource_i5fxq"]
+[sub_resource type="Resource" id="Resource_qwunl"]
 script = ExtResource("2_qwunl")
-mass = 1000.0
-gravity = -4000.0
-radius = 15.0
-texture = ExtResource("5_qwunl")
-health = 1500
-damage = 200
 metadata/_custom_type_script = "uid://bpmhw4lg2jrx5"
 
-[sub_resource type="Resource" id="Resource_bu65w"]
+[sub_resource type="Resource" id="Resource_i5fxq"]
 script = ExtResource("3_i5fxq")
-asteroid = SubResource("Resource_i5fxq")
-interval = 5.0
-count = 50
-angle_spread_deg = 360.0
-distance_base = 500.0
-velocity_base = 100.0
-asteroid_time_to_live_base = 70.0
+asteroid = SubResource("Resource_qwunl")
+count = 0
 metadata/_custom_type_script = "uid://yxj0jnvultwm"
 
-[sub_resource type="Resource" id="Resource_e3f6t"]
+[sub_resource type="Resource" id="Resource_8y4gf"]
 script = ExtResource("1_8y4gf")
-attack = SubResource("Resource_bu65w")
+attack = SubResource("Resource_i5fxq")
+start_time = 15.0
 metadata/_custom_type_script = "uid://din6ml0qfdwfl"
 
 [sub_resource type="Resource" id="Resource_ee6o4"]
 script = ExtResource("4_bu65w")
-attack_schedule_items = Array[ExtResource("1_8y4gf")]([SubResource("Resource_hb504"), SubResource("Resource_e3f6t")])
+attack_schedule_items = Array[ExtResource("1_8y4gf")]([SubResource("Resource_hb504"), SubResource("Resource_8y4gf")])
 metadata/_custom_type_script = "uid://chna4a4xykp28"
 
 [sub_resource type="Resource" id="Resource_j5wjh"]
