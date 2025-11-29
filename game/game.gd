@@ -57,6 +57,7 @@ func switch_gun(index: int):
 	HUD.update_available_guns(gun_nodes)
 	HUD.update_magazine(active_gun.in_mag_count(), active_gun.mag_size())
 	HUD.update_inventory(active_gun.inventory_count())
+	HUD.update_current_gun(active_gun.gun_conf.name)
 	
 	active_gun.connect("magazine_changed", _on_magazine_changed)
 	active_gun.connect("bullets_changed", _on_total_left_changed)
@@ -193,3 +194,30 @@ func _on_gun_collision(body: Node):
 	if _health <= 0:
 		call_deferred("_go_to_fail_scene")
 	
+
+
+func _on_hud_gun_hovered(hovered_gun: int) -> void:
+	var gun = gun_nodes[hovered_gun]
+	var conf = gun.gun_conf
+	var bullet = conf.bullet
+
+	var text = "Name: %s\n" % conf.name
+	text += "Description: %s\n" % conf.description
+	text += "Bullets per second: %.2f\n" % conf.bps
+	text += "Spread: %.1f°\n" % conf.spread_degrees
+	text += "Velocity: %.1f\n" % conf.velocity
+	text += "Magazine size: %d\n" % conf.mag_size
+	text += "Full reload time: %.2f s\n" % conf.full_reload_time
+	text += "Rotation speed: %.1f°/s\n" % conf.rotation_speed_degrees
+	text += "\n-- Bullet --\n"
+	text += "Mass: %.2f\n" % bullet.mass
+	text += "Gravity: %.2f\n" % bullet.gravity
+	text += "Radius: %.2f\n" % bullet.radius
+	text += "Health: %d\n" % bullet.health
+	text += "Damage: %d" % bullet.damage
+
+	HUD.update_note(text)
+
+
+func _on_hud_gun_hovered_over() -> void:
+	HUD.update_note("")

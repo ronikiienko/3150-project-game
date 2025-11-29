@@ -57,13 +57,15 @@ camera = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("guns_selectoin_container", "mag_label", "inventory_label", "health_label", "score_label")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("guns_selectoin_container", "mag_label", "inventory_label", "health_label", "current_gun_label", "score_label", "note_label")]
 script = ExtResource("3_ryrav")
 guns_selectoin_container = NodePath("MarginContainer2/GunsSelection")
 mag_label = NodePath("MarginContainer/VBoxContainer/Magazine/Content")
 inventory_label = NodePath("MarginContainer/VBoxContainer/Inventory/Content")
 health_label = NodePath("MarginContainer/VBoxContainer/Health/Content")
+current_gun_label = NodePath("MarginContainer/VBoxContainer/Gun/Name")
 score_label = NodePath("GameOverview/PanelContainer/MarginContainer/VBoxContainer/ScoreContainer/Score")
+note_label = NodePath("Note")
 
 [node name="GameOverview" type="MarginContainer" parent="HUD"]
 anchors_preset = 1
@@ -221,7 +223,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HUD/MarginContainer/VBoxContainer/Health"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Health"
+text = "Health:   "
 
 [node name="Content" type="Label" parent="HUD/MarginContainer/VBoxContainer/Health"]
 layout_mode = 2
@@ -233,7 +235,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HUD/MarginContainer/VBoxContainer/Magazine"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Mag"
+text = "Mag:   "
 
 [node name="Content" type="Label" parent="HUD/MarginContainer/VBoxContainer/Magazine"]
 layout_mode = 2
@@ -245,11 +247,28 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HUD/MarginContainer/VBoxContainer/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Inventory"
+text = "Inventory:   "
 
 [node name="Content" type="Label" parent="HUD/MarginContainer/VBoxContainer/Inventory"]
 layout_mode = 2
 horizontal_alignment = 2
+
+[node name="Gun" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/VBoxContainer/Gun"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Current gun:   "
+
+[node name="Name" type="Label" parent="HUD/MarginContainer/VBoxContainer/Gun"]
+layout_mode = 2
+horizontal_alignment = 2
+
+[node name="Note" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 21.0
+theme_override_font_sizes/font_size = 18
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -287,6 +306,8 @@ text = "Main menu"
 layout_mode = 2
 text = "Quit game"
 
+[connection signal="gun_hovered" from="HUD" to="." method="_on_hud_gun_hovered"]
+[connection signal="gun_hovered_over" from="HUD" to="." method="_on_hud_gun_hovered_over"]
 [connection signal="gun_switched" from="HUD" to="." method="_on_hud_gun_switched"]
 [connection signal="sim_speed_changed" from="HUD" to="." method="_on_hud_sim_speed_changed"]
 [connection signal="pressed" from="HUD/SpeedControls/Speed1" to="HUD" method="_on_speed_1_pressed"]
