@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx71i7xkmjuxm"]
+[gd_scene load_steps=4 format=3 uid="uid://c0gmnapns2w1i"]
 
 [ext_resource type="Script" uid="uid://dio5hr0t3ac12" path="res://game/body/body.gd" id="1_whlr7"]
 
@@ -6,6 +6,7 @@
 load_path = "res://.godot/imported/img.png-4c465fa38e4974dfeba7721e2ca1cc84.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ot13w"]
+radius = 1.41
 
 [node name="RigidBody2D" type="RigidBody2D"]
 contact_monitor = true

@@ -11,8 +11,8 @@ class_name AttackConf
 @export var distance_base: float
 @export var distance_spread: float
 
-@export var impulse_base: float
-@export var impulse_spread: float
+@export var velocity_base: float
+@export var velocity_spread: float
 
 @export var asteroid_time_to_live_base: float
 @export var asteroid_time_to_live_spread: float

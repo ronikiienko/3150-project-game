@@ -5,13 +5,11 @@ class_name Gun extends Node2D
 var _mechanics: GunMechanics
 var _aiming: GunAiming
 
-var _bullet_scene := preload("res://game/gun/bullet.tscn")
-
 var _sprite: Sprite2D
 
 func _fire_bullets_handler(count: int):
 	for i in range(count):		
-		var bullet = _bullet_scene.instantiate() as Bullet
+		var bullet = Bullet.new()
 		
 		bullet.texture = gun_conf.bullet.texture
 		bullet.radius = gun_conf.bullet.radius
@@ -25,11 +23,13 @@ func _fire_bullets_handler(count: int):
 		var deviation = randf_range(-spread_radians / 2.0, spread_radians / 2.0)
 		var final_rotation = rotation + deviation
 		
-		var current_impulse = Vector2(cos(final_rotation), sin(final_rotation)).normalized() * gun_conf.impulse
+		var velocity = Vector2.from_angle(final_rotation).normalized() * gun_conf.velocity
 		
-		bullet.apply_impulse(current_impulse)
+		bullet.linear_velocity = velocity
+		bullet.name = "bullet"
 		
 		get_parent().add_child(bullet)
+	pass
 		
 func _magazine_changed_handler(current_mag: int):
 	emit_signal("magazine_changed", current_mag)
