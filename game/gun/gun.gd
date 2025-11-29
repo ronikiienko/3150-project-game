@@ -96,11 +96,13 @@ func activate():
 	set_process(true)
 	set_physics_process(true)
 	_sprite.visible = true
+	_collision_shape.disabled = false
 	
 func deactivate():
 	set_process(false)
 	set_physics_process(false)
 	_sprite.visible = false
+	_collision_shape.disabled = true
 	
 	
 signal magazine_changed(current_mag: int)

@@ -29,6 +29,7 @@ func update_available_guns(guns: Array[Gun]):
 		var gun = guns[i]
 		
 		var btn := Button.new()
+		btn.custom_minimum_size = Vector2(100.0, 0.0)
 		btn.text = gun.name()
 		btn.toggle_mode = true
 		btn.button_group = group

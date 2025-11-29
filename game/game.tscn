@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://jmvm0kcsv4s3"]
+[gd_scene load_steps=17 format=3 uid="uid://jmvm0kcsv4s3"]
 
 [ext_resource type="Script" uid="uid://b8bhffxbnhxdh" path="res://game/game.gd" id="1_feb5d"]
 [ext_resource type="ButtonGroup" uid="uid://d1d14i3iiqjg0" path="res://UI/speed_button_group.tres" id="3_fc0e3"]
@@ -11,21 +11,35 @@ Label/font_sizes/font_size = 20
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fc0e3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jktm"]
-bg_color = Color(0.10287023, 0.3688345, 0.56516796, 1)
+bg_color = Color(0.018768797, 0.1361706, 0.22528502, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryrav"]
 bg_color = Color(0.030805774, 0.18162152, 0.29038608, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eow3j"]
 bg_color = Color(0.016177913, 0.09143957, 0.15727878, 1)
-border_width_top = 3
 
 [sub_resource type="Theme" id="Theme_fc0e3"]
-Button/font_sizes/font_size = 24
+Button/font_sizes/font_size = 30
 Button/styles/focus = SubResource("StyleBoxEmpty_fc0e3")
 Button/styles/hover = SubResource("StyleBoxFlat_7jktm")
 Button/styles/normal = SubResource("StyleBoxFlat_ryrav")
 Button/styles/pressed = SubResource("StyleBoxFlat_eow3j")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxrkv"]
+bg_color = Color(0.46877664, 0.46877712, 0.468777, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fuuu"]
+bg_color = Color(0.23392546, 0.23392549, 0.23392531, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dakft"]
+bg_color = Color(0.5158667, 0.5158667, 0.5158666, 1)
+
+[sub_resource type="Theme" id="Theme_dxrkv"]
+Button/font_sizes/font_size = 24
+Button/styles/hover = SubResource("StyleBoxFlat_dxrkv")
+Button/styles/normal = SubResource("StyleBoxFlat_4fuuu")
+Button/styles/pressed = SubResource("StyleBoxFlat_dakft")
 
 [sub_resource type="Theme" id="Theme_4fuuu"]
 Label/font_sizes/font_size = 20
@@ -122,6 +136,49 @@ text = "Waves launched:"
 layout_mode = 2
 text = "0"
 
+[node name="SpeedControls" type="HBoxContainer" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_right = 75.0
+offset_bottom = 35.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_fc0e3")
+theme_override_constants/separation = 0
+
+[node name="Speed1" type="Button" parent="HUD/SpeedControls"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_fc0e3")
+text = "0.1
+"
+
+[node name="Speed2" type="Button" parent="HUD/SpeedControls"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_fc0e3")
+text = "0.2
+"
+
+[node name="Speed3" type="Button" parent="HUD/SpeedControls"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_fc0e3")
+text = "0.5"
+
+[node name="Speed4" type="Button" parent="HUD/SpeedControls"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_fc0e3")
+text = "1.0"
+
 [node name="MarginContainer2" type="VBoxContainer" parent="HUD"]
 anchors_preset = 7
 anchor_left = 0.5
@@ -137,42 +194,7 @@ grow_vertical = 0
 [node name="GunsSelection" type="HBoxContainer" parent="HUD/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="SpeedControls" type="HBoxContainer" parent="HUD/MarginContainer2"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = SubResource("Theme_fc0e3")
-theme_override_constants/separation = 0
-
-[node name="Speed1" type="Button" parent="HUD/MarginContainer2/SpeedControls"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("3_fc0e3")
-text = "0.1
-"
-
-[node name="Speed2" type="Button" parent="HUD/MarginContainer2/SpeedControls"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("3_fc0e3")
-text = "0.2
-"
-
-[node name="Speed3" type="Button" parent="HUD/MarginContainer2/SpeedControls"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("3_fc0e3")
-text = "0.5"
-
-[node name="Speed4" type="Button" parent="HUD/MarginContainer2/SpeedControls"]
-layout_mode = 2
-toggle_mode = true
-button_pressed = true
-button_group = ExtResource("3_fc0e3")
-text = "1.0"
+theme = SubResource("Theme_dxrkv")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD"]
 anchors_preset = 3
@@ -266,10 +288,10 @@ text = "Quit game"
 
 [connection signal="gun_switched" from="HUD" to="." method="_on_hud_gun_switched"]
 [connection signal="sim_speed_changed" from="HUD" to="." method="_on_hud_sim_speed_changed"]
-[connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed1" to="HUD" method="_on_speed_1_pressed"]
-[connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed2" to="HUD" method="_on_speed_2_pressed"]
-[connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed3" to="HUD" method="_on_speed_3_pressed"]
-[connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed4" to="HUD" method="_on_speed_4_pressed"]
+[connection signal="pressed" from="HUD/SpeedControls/Speed1" to="HUD" method="_on_speed_1_pressed"]
+[connection signal="pressed" from="HUD/SpeedControls/Speed2" to="HUD" method="_on_speed_2_pressed"]
+[connection signal="pressed" from="HUD/SpeedControls/Speed3" to="HUD" method="_on_speed_3_pressed"]
+[connection signal="pressed" from="HUD/SpeedControls/Speed4" to="HUD" method="_on_speed_4_pressed"]
 [connection signal="main_menu" from="PauseMenu" to="." method="_on_pause_menu_main_menu"]
 [connection signal="quit" from="PauseMenu" to="." method="_on_pause_menu_quit"]
 [connection signal="restart" from="PauseMenu" to="." method="_on_pause_menu_restart"]

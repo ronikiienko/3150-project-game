@@ -173,13 +173,16 @@ func _on_pause_menu_toggle_pause() -> void:
 
 var _health: int
 
+func _go_to_fail_scene():
+	get_tree().change_scene_to_file("res://game/endgame_screens/fail.tscn")
+
 func _on_gun_collision(body: Node):
 	if body is Asteroid:
 		_health -= body.damage
-		body.queue_free()
+		body.call_deferred("queue_free")
 		
 	HUD.update_health(_health, level_conf.health)
 		
 	if _health <= 0:
-		get_tree().change_scene_to_file("res://game/endgame_screens/fail.tscn")
+		call_deferred("_go_to_fail_scene")
 	
