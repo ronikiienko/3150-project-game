@@ -74,7 +74,53 @@ func _process(delta: float):
 	_cleanup(delta)
 	if _attack_system.is_spawning_done():
 		get_tree().change_scene_to_file("res://game/endgame_screens/win.tscn")
+
+func _input(event: InputEvent):
+	if event is InputEventMouseButton and event.pressed:
+		HUD.update_note("")
 		
+func _handle_asteroid_note(asteroid: Asteroid):
+	var text = "Asteroid\n"
+	text += "Health: %d / %d\n" % [asteroid.health, asteroid.max_health]
+	text += "Damage on hit: %d\n" % asteroid.damage
+	text += "Time to live: %.2f s\n" % asteroid.time_to_live
+	text += "Radius: %.2f\n" % asteroid.radius
+	text += "Gravity strength: %.2f" % asteroid.gravity_strength
+	
+	HUD.update_note(text)
+	
+func _handle_bullet_note(bullet: Bullet):
+	var text = "Bullet\n"
+	text += "Health: %d\n" % bullet.health
+	text += "Damage: %d\n" % bullet.damage
+	text += "Time to live: %.2f s\n" % bullet.time_to_live
+	text += "Radius: %.2f\n" % bullet.radius
+	text += "Gravity strength: %.2f" % bullet.gravity_strength
+	
+	HUD.update_note(text)
+	
+func _handle_gun_note(gun: Gun):
+	var conf = gun.gun_conf
+	var bullet = conf.bullet
+	
+	var text = "Gun\n"
+	text += "Name: %s\n" % conf.name
+	text += "Description: %s\n" % conf.description
+	text += "Bullets per second: %.2f\n" % conf.bps
+	text += "Spread: %.1f°\n" % conf.spread_degrees
+	text += "Velocity: %.1f\n" % conf.velocity
+	text += "Magazine size: %d\n" % conf.mag_size
+	text += "Full reload time: %.2f s\n" % conf.full_reload_time
+	text += "Rotation speed: %.1f°/s\n" % conf.rotation_speed_degrees
+	text += "\nBullet\n"
+	text += "Mass: %.2f\n" % bullet.mass
+	text += "Gravity: %.2f\n" % bullet.gravity
+	text += "Radius: %.2f\n" % bullet.radius
+	text += "Health: %d\n" % bullet.health
+	text += "Damage: %d" % bullet.damage
+
+	HUD.update_note(text)
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		active_gun.start_shooting()
@@ -91,6 +137,29 @@ func _unhandled_input(event: InputEvent) -> void:
 			camera.zoom *= Vector2(1 + zoom_speed, 1 + zoom_speed)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			camera.zoom *= Vector2(1 - zoom_speed, 1 - zoom_speed)
+			
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		var pos = get_global_mouse_position()
+
+		var query = PhysicsPointQueryParameters2D.new()
+		query.position = pos
+		
+		var objects_under_click = get_world_2d().direct_space_state.intersect_point(query)
+		
+		for item in objects_under_click:
+			var collider = item.collider
+
+			var p = collider
+			while p:
+				if p is Bullet:
+					_handle_bullet_note(p)
+					break
+				if p is Asteroid:
+					_handle_asteroid_note(p)
+					break
+				if p is Gun:
+					_handle_gun_note(p)
+				p = p.get_parent()
 
 func _physics_process(delta: float):
 	var bodies = get_tree().get_nodes_in_group("bodies") as Array[Body]
@@ -198,25 +267,7 @@ func _on_gun_collision(body: Node):
 
 func _on_hud_gun_hovered(hovered_gun: int) -> void:
 	var gun = gun_nodes[hovered_gun]
-	var conf = gun.gun_conf
-	var bullet = conf.bullet
-
-	var text = "Name: %s\n" % conf.name
-	text += "Description: %s\n" % conf.description
-	text += "Bullets per second: %.2f\n" % conf.bps
-	text += "Spread: %.1f°\n" % conf.spread_degrees
-	text += "Velocity: %.1f\n" % conf.velocity
-	text += "Magazine size: %d\n" % conf.mag_size
-	text += "Full reload time: %.2f s\n" % conf.full_reload_time
-	text += "Rotation speed: %.1f°/s\n" % conf.rotation_speed_degrees
-	text += "\n-- Bullet --\n"
-	text += "Mass: %.2f\n" % bullet.mass
-	text += "Gravity: %.2f\n" % bullet.gravity
-	text += "Radius: %.2f\n" % bullet.radius
-	text += "Health: %d\n" % bullet.health
-	text += "Damage: %d" % bullet.damage
-
-	HUD.update_note(text)
+	_handle_gun_note(gun)
 
 
 func _on_hud_gun_hovered_over() -> void:

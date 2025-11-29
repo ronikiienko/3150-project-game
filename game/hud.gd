@@ -1,18 +1,21 @@
 extends CanvasLayer
 
 func _on_speed_1_pressed() -> void:
-	emit_signal("sim_speed_changed", 0.1)
+	emit_signal("sim_speed_changed", 0.0)
 
 
 func _on_speed_2_pressed() -> void:
-	emit_signal("sim_speed_changed", 0.2)
+	emit_signal("sim_speed_changed", 0.05)
 
 
 func _on_speed_3_pressed() -> void:
-	emit_signal("sim_speed_changed", 0.5)
+	emit_signal("sim_speed_changed", 0.2)
 
 
 func _on_speed_4_pressed() -> void:
+	emit_signal("sim_speed_changed", 0.5)
+	
+func _on_speed_5_pressed() -> void:
 	emit_signal("sim_speed_changed", 1.0)
 	
 var guns: Array[Gun]
