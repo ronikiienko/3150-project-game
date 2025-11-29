@@ -9,8 +9,6 @@ enum Difficulty { EASY, MEDIUM, DIFFICULT }
 
 var _attack_system: AttackSystem
 
-var GunScene = preload("res://game/gun/gun.tscn")
-
 var gun_nodes: Array[Gun] = []
 var active_gun: Gun
 
@@ -26,7 +24,7 @@ func _ready() -> void:
 	for gun_conf in level_conf.available_guns:
 		print("Gun conf")
 		var typed_gun_conf = gun_conf as GunConf
-		var gun_node = GunScene.instantiate() as Gun
+		var gun_node = Gun.new()
 		gun_node.gun_conf = typed_gun_conf
 
 		gun_nodes.push_back(gun_node)
