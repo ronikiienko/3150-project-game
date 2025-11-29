@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4ql6njfh36xb"]
-
-[ext_resource type="PackedScene" uid="uid://c0gmnapns2w1i" path="res://game/body/body.tscn" id="1_52xes"]
-[ext_resource type="Script" uid="uid://ce4g70j02k03q" path="res://game/attack_system/asteroid.gd" id="2_er3qc"]
-
-[node name="RigidBody2D" instance=ExtResource("1_52xes")]
-script = ExtResource("2_er3qc")
-contacts_to_live = 10
-time_to_live = 100.0
