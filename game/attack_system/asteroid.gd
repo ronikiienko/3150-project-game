@@ -1,12 +1,14 @@
 extends Body
 class_name Asteroid
 
-@export var contacts_to_live: int = 10
-@export var time_to_live: float = 100.0
+@export var health: int
+@export var damage: int
+@export var time_to_live: float
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
+	self.body_entered.connect(_on_body_entered)
 	add_to_group("asteroids")
 #
 #
@@ -14,8 +16,13 @@ func _ready() -> void:
 #func _process(delta: float) -> void:
 	#pass
 	
+
 func _on_body_entered(body: Node) -> void:
-	print("On body entered")
-	contacts_to_live -= 1
-	if contacts_to_live <= 0:
+	if body is Bullet or body is Asteroid:
+		body.take_damage(damage)
+		
+func take_damage(amount: int):
+	print("Asteroid took ", amount)
+	health -= amount
+	if health <= 0:
 		queue_free()

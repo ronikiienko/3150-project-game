@@ -7,9 +7,7 @@ enum Difficulty { EASY, MEDIUM, DIFFICULT }
 @export var zoom_speed: float = 0.1;
 @export var level_conf: LevelConf
 
-func _pause():
-	get_tree().paused = true
-	$PauseMenu.visible = true
+
 
 var GunScene = preload("res://game/gun/gun.tscn")
 
@@ -58,20 +56,7 @@ func _on_magazine_changed(new_count: int):
 	
 func _on_total_left_changed(new_count: int):
 	HUD.update_bullet_state(active_gun.in_mag_count(), new_count)
-
-func _input(event):
-	# zoom
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			camera.zoom *= Vector2(1 + zoom_speed, 1 + zoom_speed)
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			camera.zoom *= Vector2(1 - zoom_speed, 1 - zoom_speed)
-		
-			
-	if event is InputEventKey:
-		if event.pressed and event.keycode == Key.KEY_ESCAPE:
-			_pause()
-			
+	
 
 func _process(delta: float):
 	_cleanup(delta)
@@ -86,31 +71,42 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("reload"):
 		active_gun.reload()
+		
+		# zoom
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			camera.zoom *= Vector2(1 + zoom_speed, 1 + zoom_speed)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			camera.zoom *= Vector2(1 - zoom_speed, 1 - zoom_speed)
 
 func _physics_process(delta: float):
 	
-	var bodies = get_tree().get_nodes_in_group("bodies")
-	#num_objects_label.text = "Num objects: %d" % bodies.size()
+	var bodies = get_tree().get_nodes_in_group("bodies") as Array[Body]
 
-	var G = 10.0  # gravity strength constant, tune this
-	for i in bodies.size():
+	var G = level_conf.global_gravity
+
+	for i in range(bodies.size()):
 		var b1 = bodies[i]
 		var p1 = b1.position
+		var g1 = b1.gravity_strength  # body-specific gravity factor
 
 		for j in range(i + 1, bodies.size()):
 			var b2 = bodies[j]
 			var p2 = b2.position
+			var g2 = b2.gravity_strength
 
 			var dir = p2 - p1
 			var dist_sq = dir.length_squared()
-
 			if dist_sq < 1.0:
-				continue  # prevent blowups
+				continue  # avoid huge forces
 
-			var force_mag = G / dist_sq
+			# so that two objects with negative gravity don't pull each other
+			if g1 < 0 and g2 < 0:
+				dir = -dir
+			
+			var force_mag = G * g1 * g2 / dist_sq
 			var force = dir.normalized() * force_mag
 
-		# apply equal and opposite forces
 			b1.apply_force(force)
 			b2.apply_force(-force)
 
@@ -139,3 +135,33 @@ func _cleanup(delta: float):
 			if body.time_to_live <= 0:
 				body.queue_free()
 	pass
+
+
+func _pause():
+	get_tree().paused = true
+	$PauseMenu.visible = true
+	
+func _unpause():
+	print("Unpause")
+	get_tree().paused = false
+	$PauseMenu.visible = false 
+
+func _on_pause_menu_main_menu() -> void:
+	_unpause()
+	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_pause_menu_quit() -> void:
+	get_tree().quit()
+	
+func _on_pause_menu_restart() -> void:
+	_unpause()
+	get_tree().change_scene_to_file("res://choose_level.tscn")
+
+
+func _on_pause_menu_toggle_pause() -> void:
+	print("Toggle")
+	if get_tree().paused:
+		_unpause()
+	else:
+		_pause()

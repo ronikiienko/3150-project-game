@@ -59,5 +59,8 @@ func trigger_attack(attack: AttackConf) -> void:
 	asteroid_instance.position = position
 	asteroid_instance.time_to_live = attack.asteroid_time_to_live_base + randf_range(-attack.asteroid_time_to_live_spread / 2, attack.asteroid_time_to_live_spread / 2)
 	asteroid_instance.linear_velocity = velocity
+	asteroid_instance.health = attack.asteroid.health
+	asteroid_instance.damage = attack.asteroid.damage
+	asteroid_instance.gravity_strength = attack.asteroid.gravity
 	
 	get_parent().add_child(asteroid_instance)

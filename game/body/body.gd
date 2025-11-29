@@ -3,6 +3,8 @@ class_name Body
 
 @export var texture: Texture2D;
 
+@export var gravity_strength: float
+
 @export var radius: float;
 
 var _sprite: Sprite2D
@@ -24,6 +26,9 @@ func _ready() -> void:
 	circle.radius = radius
 	_collision_shape.shape = circle
 	add_child(_collision_shape)
+	
+	contact_monitor = true
+	max_contacts_reported = 1
 	
 	add_to_group("bodies")
 	

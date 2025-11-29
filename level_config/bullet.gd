@@ -7,3 +7,5 @@ class_name BulletConf
 @export var time_to_live: float
 @export var icon: Texture2D
 @export var texture: Texture2D
+@export var health: int
+@export var damage: int

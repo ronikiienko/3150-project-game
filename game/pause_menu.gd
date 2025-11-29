@@ -1,32 +1,28 @@
-extends CanvasLayer
-
-
-
-func _unpause():
-	self.visible = false
-	get_tree().paused = false
+extends CanvasLayer	
 	
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.is_pressed() and event.keycode == Key.KEY_ESCAPE:
-			print("Unpause")
-			_unpause()
-	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		emit_signal("toggle_pause")
 
 func _on_resume_pressed() -> void:
-	_unpause()
+	emit_signal("toggle_pause")
 
 
 func _on_main_menu_pressed() -> void:
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://main.tscn")
+	emit_signal("main_menu")
 
 
 func _on_quit_game_pressed() -> void:
-	get_tree().quit()
+	emit_signal("quit")
 
 
 func _on_restart_pressed() -> void:
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://sandbox_config.tscn")
+	emit_signal("restart")
+	
+signal restart()
+
+signal toggle_pause()
+
+signal main_menu()
+
+signal quit()

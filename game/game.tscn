@@ -189,7 +189,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
-process_mode = 2
+process_mode = 3
 visible = false
 script = ExtResource("4_fc0e3")
 
@@ -230,6 +230,10 @@ text = "Quit game"
 [connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed2" to="HUD" method="_on_speed_2_pressed"]
 [connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed3" to="HUD" method="_on_speed_3_pressed"]
 [connection signal="pressed" from="HUD/MarginContainer2/SpeedControls/Speed4" to="HUD" method="_on_speed_4_pressed"]
+[connection signal="main_menu" from="PauseMenu" to="." method="_on_pause_menu_main_menu"]
+[connection signal="quit" from="PauseMenu" to="." method="_on_pause_menu_quit"]
+[connection signal="restart" from="PauseMenu" to="." method="_on_pause_menu_restart"]
+[connection signal="toggle_pause" from="PauseMenu" to="." method="_on_pause_menu_toggle_pause"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Main menu" to="PauseMenu" method="_on_main_menu_pressed"]
