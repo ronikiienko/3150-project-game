@@ -17,10 +17,10 @@ func _on_speed_4_pressed() -> void:
 	
 var guns: Array[Gun]
 
-func update_available_guns(guns: Array[Gun]):
-	var container = $MarginContainer2/GunsSelection
-	
-	for child in container.get_children():
+@export var guns_selectoin_container: Container
+
+func update_available_guns(guns: Array[Gun]):	
+	for child in guns_selectoin_container.get_children():
 		child.queue_free()
 		
 	var group := ButtonGroup.new()
@@ -34,17 +34,23 @@ func update_available_guns(guns: Array[Gun]):
 		btn.button_group = group
 		btn.connect("pressed", Callable(self, "_on_gun_button_pressed").bind(i))
 
-		container.add_child(btn)
+		guns_selectoin_container.add_child(btn)
 
 func _on_gun_button_pressed(new_gun: int):
 	emit_signal("gun_switched", new_gun)
+
+@export var mag_label: Label
+@export var inventory_label: Label
+@export var health_label: Label
+
+func update_magazine(left: int, size: int):
+	mag_label.text = str(left) + " / " + str(size)
 	
-func update_bullet_state(in_mag: int, mag_size: int):
-	var in_mag_label = $Container/InMag
-	var mag_size_label = $Container/MagSize
-	
-	in_mag_label.text = str(in_mag) 
-	mag_size_label.text = str(mag_size)
+func update_inventory(left: int):
+	inventory_label.text = str(left)
+
+func update_health(left: int, full: int):	
+	health_label.text = str(left) + " / " + str(full)
 
 signal gun_switched(new_gun: int)
 signal sim_speed_changed(new_speed: float)

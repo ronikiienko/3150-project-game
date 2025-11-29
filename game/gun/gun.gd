@@ -113,6 +113,9 @@ signal collision(body: Node)
 
 func in_mag_count() -> int:
 	return _mechanics.left_in_magazine()
+	
+func mag_size() -> int:
+	return _mechanics.mag_size
 
 func inventory_count() -> int:
 	return gun_conf.bullets_available

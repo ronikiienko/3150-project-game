@@ -35,6 +35,8 @@ func _ready() -> void:
 		
 	switch_gun(0)
 	
+	HUD.update_health(_health, level_conf.health)
+	
 
 func switch_gun(index: int):
 	if active_gun:
@@ -46,17 +48,18 @@ func switch_gun(index: int):
 	active_gun = gun_nodes[index]
 	active_gun.activate()
 	HUD.update_available_guns(gun_nodes)
-	HUD.update_bullet_state(active_gun.in_mag_count(), active_gun.inventory_count())
+	HUD.update_magazine(active_gun.in_mag_count(), active_gun.mag_size())
+	HUD.update_inventory(active_gun.inventory_count())
 	
 	active_gun.connect("magazine_changed", _on_magazine_changed)
 	active_gun.connect("bullets_changed", _on_total_left_changed)
 	active_gun.connect("collision", _on_gun_collision)
 		
 func _on_magazine_changed(new_count: int):
-	HUD.update_bullet_state(new_count, active_gun.inventory_count())
+	HUD.update_magazine(new_count, active_gun.mag_size())
 	
 func _on_total_left_changed(new_count: int):
-	HUD.update_bullet_state(active_gun.in_mag_count(), new_count)
+	HUD.update_inventory(new_count)
 	
 
 func _process(delta: float):
@@ -174,6 +177,8 @@ func _on_gun_collision(body: Node):
 	if body is Asteroid:
 		_health -= body.damage
 		body.queue_free()
+		
+	HUD.update_health(_health, level_conf.health)
 		
 	if _health <= 0:
 		get_tree().change_scene_to_file("res://game/endgame_screens/fail.tscn")
