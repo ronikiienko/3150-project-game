@@ -38,15 +38,16 @@ func _process(delta: float) -> void:
 	# Initialize a scheduled attack
 
 func start_attack(item: AttackScheduleItem) -> void:
+	if item.attack.count == 0:
+		return
 	active_attacks.append({
 		"attack": item.attack,
-		"time_since_last": 0.0,
+		"time_since_last": item.attack.interval,
 		"times_done": 0
 	})
 
 func trigger_attack(attack: AttackConf) -> void:
 	var asteroid_instance = Asteroid.new()
-
 
 	var angle_rad = deg_to_rad(attack.angle_base_deg + randf_range(-attack.angle_spread_deg / 2, attack.angle_spread_deg / 2)) 
 	var distance = attack.distance_base + randf_range(-attack.distance_spread / 2, attack.distance_spread / 2)
