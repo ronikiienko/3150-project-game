@@ -84,7 +84,17 @@ signal gun_switched(new_gun: int)
 signal gun_hovered(hovered_gun: int)
 signal gun_hovered_over()
 signal sim_speed_changed(new_speed: float)
+signal help_hovered()
+signal help_hovered_over()
 
 @export var note_label: Label
 func update_note(text: String):
 	note_label.text = text
+
+
+func _on_button_mouse_entered() -> void:
+	emit_signal("help_hovered")
+
+
+func _on_button_mouse_exited() -> void:
+	emit_signal("help_hovered_over")

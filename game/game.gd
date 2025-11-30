@@ -317,3 +317,22 @@ func _on_hud_gun_hovered(hovered_gun: int) -> void:
 
 func _on_hud_gun_hovered_over() -> void:
 	HUD.update_note("")
+
+
+func _on_hud_help_hovered() -> void:
+	var text = "Controls:\n"
+	text += "\nMovement:\n"
+	text += "  W/A/S/D - Move camera\n"
+	text += "  Mouse Wheel - Zoom camera\n"
+	text += "\nCombat:\n"
+	text += "  Left Mouse Button - Shoot\n"
+	text += "  R - Reload current gun\n"
+	text += "\nInformation:\n"
+	text += "  Right Click on Asteroid / Bullet / Gun - Show info in top-left corner\n"
+	text += "  Hover over gun name in HUD - Show gun info\n"
+	
+	HUD.update_note(text)
+
+
+func _on_hud_help_hovered_over() -> void:
+	HUD.update_note("")
