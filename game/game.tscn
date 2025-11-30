@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://jmvm0kcsv4s3"]
+[gd_scene load_steps=16 format=3 uid="uid://jmvm0kcsv4s3"]
 
 [ext_resource type="Script" uid="uid://b8bhffxbnhxdh" path="res://game/game.gd" id="1_feb5d"]
-[ext_resource type="ButtonGroup" uid="uid://d1d14i3iiqjg0" path="res://UI/speed_button_group.tres" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://bf4h56bsb2v0" path="res://game/hud.gd" id="3_ryrav"]
 [ext_resource type="Script" uid="uid://cqn6v7xglfadn" path="res://game/pause_menu.gd" id="4_fc0e3"]
 
@@ -152,42 +151,6 @@ size_flags_horizontal = 4
 theme = SubResource("Theme_fc0e3")
 theme_override_constants/separation = 0
 
-[node name="Speed1" type="Button" parent="HUD/SpeedControls"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("3_fc0e3")
-text = "0.01"
-
-[node name="Speed2" type="Button" parent="HUD/SpeedControls"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("3_fc0e3")
-text = "0.05"
-
-[node name="Speed3" type="Button" parent="HUD/SpeedControls"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("3_fc0e3")
-text = "0.2"
-
-[node name="Speed4" type="Button" parent="HUD/SpeedControls"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("3_fc0e3")
-text = "0.5"
-
-[node name="Speed5" type="Button" parent="HUD/SpeedControls"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-toggle_mode = true
-button_pressed = true
-button_group = ExtResource("3_fc0e3")
-text = "1.0"
-
 [node name="MarginContainer2" type="VBoxContainer" parent="HUD"]
 anchors_preset = 7
 anchor_left = 0.5
@@ -335,11 +298,6 @@ text = "Quit game"
 [connection signal="gun_hovered_over" from="HUD" to="." method="_on_hud_gun_hovered_over"]
 [connection signal="gun_switched" from="HUD" to="." method="_on_hud_gun_switched"]
 [connection signal="sim_speed_changed" from="HUD" to="." method="_on_hud_sim_speed_changed"]
-[connection signal="pressed" from="HUD/SpeedControls/Speed1" to="HUD" method="_on_speed_1_pressed"]
-[connection signal="pressed" from="HUD/SpeedControls/Speed2" to="HUD" method="_on_speed_2_pressed"]
-[connection signal="pressed" from="HUD/SpeedControls/Speed3" to="HUD" method="_on_speed_3_pressed"]
-[connection signal="pressed" from="HUD/SpeedControls/Speed4" to="HUD" method="_on_speed_4_pressed"]
-[connection signal="pressed" from="HUD/SpeedControls/Speed5" to="HUD" method="_on_speed_5_pressed"]
 [connection signal="main_menu" from="PauseMenu" to="." method="_on_pause_menu_main_menu"]
 [connection signal="quit" from="PauseMenu" to="." method="_on_pause_menu_quit"]
 [connection signal="restart" from="PauseMenu" to="." method="_on_pause_menu_restart"]
