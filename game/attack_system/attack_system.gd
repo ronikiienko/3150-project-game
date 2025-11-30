@@ -4,20 +4,25 @@ class_name AttackSystem
 @export var attack_schedule: AttackScheduleConf
 
 # Internal state
+
 var current_time: float = 0.0
 var active_attacks: Array = []
+var _started_items := {}  # tracks which schedule items have started
 
 func _ready() -> void:
+	_started_items.clear()
+	active_attacks.clear()
+	current_time = 0.0
 	print("AttackSystem ready. Schedule has %d items." % attack_schedule.attack_schedule_items.size())
 
 func _process(delta: float) -> void:
 	current_time += delta
-	
+
 	# Start attacks whose time has come
 	for item in attack_schedule.attack_schedule_items:
-		if not item.has_meta("started") and item.start_time <= current_time:
+		if not _started_items.has(item) and item.start_time <= current_time:
 			start_attack(item)
-			item.set_meta("started", true)
+			_started_items[item] = true
 
 	# Process ongoing attacks
 	for attack_data in active_attacks:
@@ -30,7 +35,8 @@ func _process(delta: float) -> void:
 	# Remove finished attacks
 	active_attacks = active_attacks.filter(func(a): return a.times_done < a.attack.count)
 
-# Initialize a scheduled attack
+	# Initialize a scheduled attack
+
 func start_attack(item: AttackScheduleItem) -> void:
 	active_attacks.append({
 		"attack": item.attack,
@@ -40,15 +46,16 @@ func start_attack(item: AttackScheduleItem) -> void:
 
 func trigger_attack(attack: AttackConf) -> void:
 	var asteroid_instance = Asteroid.new()
-	
+
+
 	var angle_rad = deg_to_rad(attack.angle_base_deg + randf_range(-attack.angle_spread_deg / 2, attack.angle_spread_deg / 2)) 
 	var distance = attack.distance_base + randf_range(-attack.distance_spread / 2, attack.distance_spread / 2)
 	var position = Vector2.from_angle(angle_rad) * distance
-	
+
 	var velocity_magnitude = attack.velocity_base + randf_range(-attack.velocity_spread / 2, attack.velocity_spread / 2)
 	var velocity_direction = -position.normalized()
 	var velocity = velocity_direction * velocity_magnitude
-	
+
 	asteroid_instance.radius = attack.asteroid.radius
 	asteroid_instance.texture = attack.asteroid.texture
 	asteroid_instance.mass = attack.asteroid.mass
@@ -59,19 +66,18 @@ func trigger_attack(attack: AttackConf) -> void:
 	asteroid_instance.damage = attack.asteroid.damage
 	asteroid_instance.gravity_strength = attack.asteroid.gravity_strength
 	asteroid_instance.gravity_radius = attack.asteroid.gravity_radius
-	
+
 	get_parent().add_child(asteroid_instance)
-	
+
 	asteroid_instance.connect("destroyed", _asteroid_destroyed_handler)
 
 func is_spawning_done() -> bool:
 	for item in attack_schedule.attack_schedule_items:
-		if not item.has_meta("started"):
+		if not _started_items.has(item):
 			return false
-
 	return active_attacks.is_empty()
-	
+
 func _asteroid_destroyed_handler(asteroid: Asteroid, destroyed_by: Node):
 	emit_signal("asteroid_destroyed", asteroid, destroyed_by)
-	
+
 signal asteroid_destroyed(asteroid: Asteroid, destroyed_by: Node)

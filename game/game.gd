@@ -126,6 +126,7 @@ func _handle_asteroid_note(asteroid: Asteroid):
 	text += "Radius: %.2f\n" % asteroid.radius
 	text += "Gravity strength: %.2f\n" % asteroid.gravity_strength
 	text += "Gravity radius: %.2f\n" % asteroid.gravity_radius
+	text += "Speed: %.2f\n" % asteroid.linear_velocity.length()
 	
 	HUD.update_note(text)
 	
@@ -137,6 +138,7 @@ func _handle_bullet_note(bullet: Bullet):
 	text += "Radius: %.2f\n" % bullet.radius
 	text += "Gravity strength: %.2f\n" % bullet.gravity_strength
 	text += "Gravity radius: %.2f\n" % bullet.gravity_radius
+	text += "Speed: %.2f\n" % bullet.linear_velocity.length()
 	
 	HUD.update_note(text)
 	
