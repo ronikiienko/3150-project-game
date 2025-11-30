@@ -94,6 +94,14 @@ func _process(delta: float):
 
 	_cam_vel = _cam_vel.lerp(dir * level_conf.camera_speed, level_conf.camera_acceleration * dt_unscaled)
 	camera.position += _cam_vel * dt_unscaled / camera.zoom.x
+	
+	# Clamp to world radius
+	var r = level_conf.world_radius
+	var dist = camera.position.length()
+
+	if dist > r:
+		var clamped = camera.position.normalized() * r
+		camera.position = clamped
 		
 
 func _input(event: InputEvent):

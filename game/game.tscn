@@ -151,17 +151,15 @@ size_flags_horizontal = 4
 theme = SubResource("Theme_fc0e3")
 theme_override_constants/separation = 0
 
-[node name="MarginContainer2" type="VBoxContainer" parent="HUD"]
-anchors_preset = 7
-anchor_left = 0.5
+[node name="MarginContainer2" type="MarginContainer" parent="HUD"]
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
 offset_top = -40.0
-offset_right = 130.0
-grow_horizontal = 2
+offset_right = 150.0
 grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="GunsSelection" type="HBoxContainer" parent="HUD/MarginContainer2"]
 layout_mode = 2
