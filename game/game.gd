@@ -286,7 +286,14 @@ func _on_pause_menu_quit() -> void:
 	
 func _on_pause_menu_restart() -> void:
 	_unpause()
-	get_tree().change_scene_to_file("res://choose_level.tscn")
+	var scene_res = load("res://game/game.tscn") as PackedScene
+	var new_scene = scene_res.instantiate()
+
+	new_scene.level_conf = level_conf   # set exported variable
+
+	get_tree().get_root().add_child(new_scene)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = new_scene
 
 
 func _on_pause_menu_toggle_pause() -> void:
