@@ -1,22 +1,30 @@
 extends CanvasLayer
 
-func _on_speed_1_pressed() -> void:
-	emit_signal("sim_speed_changed", 0.01)
+@export var speed_controls_container: Container
 
+func set_available_speeds(speeds: Array[float], selected: int):
+	for child in speed_controls_container.get_children():
+		child.queue_free()
+		
+	var button_group = ButtonGroup.new()
+		
+	for i in range(speeds.size()):
+		var speed = speeds[i]
+		var btn = Button.new()
+		btn.toggle_mode = true
+		btn.button_group = button_group
+		btn.custom_minimum_size = Vector2(80.0, 0.0)
+		btn.text = str(speed)
+		btn.connect("pressed", Callable(self, "_on_sim_speed_changed").bind(speed))
+		speed_controls_container.add_child(btn)
+		
+		if i == selected:
+			btn.button_pressed = true
+		
+		
+func _on_sim_speed_changed(new_speed: float):
+	emit_signal("sim_speed_changed", new_speed)
 
-func _on_speed_2_pressed() -> void:
-	emit_signal("sim_speed_changed", 0.05)
-
-
-func _on_speed_3_pressed() -> void:
-	emit_signal("sim_speed_changed", 0.2)
-
-
-func _on_speed_4_pressed() -> void:
-	emit_signal("sim_speed_changed", 0.5)
-	
-func _on_speed_5_pressed() -> void:
-	emit_signal("sim_speed_changed", 1.0)
 	
 var guns: Array[Gun]
 

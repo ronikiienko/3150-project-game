@@ -20,6 +20,8 @@ func _asteroid_destroyed_handler(asteroid: Asteroid, destroyed_by: Node):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	HUD.set_available_speeds(level_conf.game_speeds, level_conf.default_speed_index)
+	
 	_attack_system = AttackSystem.new()
 	_attack_system.attack_schedule = level_conf.attack_schedule
 	_attack_system.connect("asteroid_destroyed", _asteroid_destroyed_handler)
@@ -96,7 +98,8 @@ func _process(delta: float):
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and event.pressed:
-		HUD.update_note("")
+		if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
+			HUD.update_note("")
 		
 func _handle_asteroid_note(asteroid: Asteroid):
 	var text = "Asteroid\n"
@@ -131,7 +134,7 @@ func _handle_gun_note(gun: Gun):
 	text += "Magazine size: %d\n" % conf.mag_size
 	text += "Full reload time: %.2f s\n" % conf.full_reload_time
 	text += "Rotation speed: %.1f°/s\n" % conf.rotation_speed_degrees
-	text += "\nBullet\n"
+	text += "\nGun bullets\n"
 	text += "Mass: %.2f\n" % bullet.mass
 	text += "Gravity: %.2f\n" % bullet.gravity
 	text += "Radius: %.2f\n" % bullet.radius
