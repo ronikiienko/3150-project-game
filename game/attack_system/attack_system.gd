@@ -57,7 +57,8 @@ func trigger_attack(attack: AttackConf) -> void:
 	asteroid_instance.linear_velocity = velocity
 	asteroid_instance.health = attack.asteroid.health
 	asteroid_instance.damage = attack.asteroid.damage
-	asteroid_instance.gravity_strength = attack.asteroid.gravity
+	asteroid_instance.gravity_strength = attack.asteroid.gravity_strength
+	asteroid_instance.gravity_radius = attack.asteroid.gravity_radius
 	
 	get_parent().add_child(asteroid_instance)
 	

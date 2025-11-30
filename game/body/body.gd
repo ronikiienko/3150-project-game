@@ -4,6 +4,7 @@ class_name Body
 @export var texture: Texture2D;
 
 @export var gravity_strength: float
+@export var gravity_radius: float
 
 @export var radius: float;
 

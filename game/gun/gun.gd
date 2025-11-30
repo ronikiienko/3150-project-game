@@ -16,7 +16,8 @@ func _fire_bullets_handler(count: int):
 		bullet.time_to_live = gun_conf.bullet.time_to_live
 		bullet.health = gun_conf.bullet.health
 		bullet.damage = gun_conf.bullet.damage
-		bullet.gravity_strength = gun_conf.bullet.gravity
+		bullet.gravity_strength = gun_conf.bullet.gravity_strength
+		bullet.gravity_radius = gun_conf.bullet.gravity_radius
 		
 		var rotation = _aiming.get_direction_rad()
 		

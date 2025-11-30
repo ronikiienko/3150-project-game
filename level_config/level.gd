@@ -15,7 +15,7 @@ class_name LevelConf
 
 @export var description: String
 
-@export var camera_speed: float = 800.0
+@export var camera_speed: float = 500.0
 
 @export var game_speeds: Array[float] = [0.01, 0.05, 0.2, 0.5, 1.0]
 @export var default_speed_index: int = 4
