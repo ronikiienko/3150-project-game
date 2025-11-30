@@ -124,7 +124,8 @@ func _handle_asteroid_note(asteroid: Asteroid):
 	text += "Damage on hit: %d\n" % asteroid.damage
 	text += "Time to live: %.2f s\n" % asteroid.time_to_live
 	text += "Radius: %.2f\n" % asteroid.radius
-	text += "Gravity strength: %.2f" % asteroid.gravity_strength
+	text += "Gravity strength: %.2f\n" % asteroid.gravity_strength
+	text += "Gravity radius: %.2f\n" % asteroid.gravity_radius
 	
 	HUD.update_note(text)
 	
@@ -134,7 +135,8 @@ func _handle_bullet_note(bullet: Bullet):
 	text += "Damage: %d\n" % bullet.damage
 	text += "Time to live: %.2f s\n" % bullet.time_to_live
 	text += "Radius: %.2f\n" % bullet.radius
-	text += "Gravity strength: %.2f" % bullet.gravity_strength
+	text += "Gravity strength: %.2f\n" % bullet.gravity_strength
+	text += "Gravity radius: %.2f\n" % bullet.gravity_radius
 	
 	HUD.update_note(text)
 	
@@ -153,7 +155,8 @@ func _handle_gun_note(gun: Gun):
 	text += "Rotation speed: %.1f°/s\n" % conf.rotation_speed_degrees
 	text += "\nGun bullets\n"
 	text += "Mass: %.2f\n" % bullet.mass
-	text += "Gravity: %.2f\n" % bullet.gravity
+	text += "Gravity strength: %.2f\n" % bullet.gravity_strength
+	text += "Gravity radius: %.2f\n" % bullet.gravity_radius
 	text += "Radius: %.2f\n" % bullet.radius
 	text += "Health: %d\n" % bullet.health
 	text += "Damage: %d" % bullet.damage
