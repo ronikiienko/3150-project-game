@@ -92,16 +92,22 @@ func _process(delta: float):
 	if dir != Vector2.ZERO:
 		dir = dir.normalized()
 
-	_cam_vel = _cam_vel.lerp(dir * level_conf.camera_speed, level_conf.camera_acceleration * dt_unscaled)
-	camera.position += _cam_vel * dt_unscaled / camera.zoom.x
-	
+	var target_velocity = dir * level_conf.camera_speed
+
+	# Smooth factor based on desired response time (tau)
+	var tau = 0.2  # seconds to reach ~63% of target velocity
+	var alpha = 1.0 - exp(-dt_unscaled / tau)
+
+	_cam_vel = _cam_vel.lerp(target_velocity, alpha)
+
+	# Move camera, independent of zoom
+	camera.position += _cam_vel * dt_unscaled
+
 	# Clamp to world radius
 	var r = level_conf.world_radius
 	var dist = camera.position.length()
-
 	if dist > r:
-		var clamped = camera.position.normalized() * r
-		camera.position = clamped
+		camera.position = camera.position.normalized() * r
 		
 
 func _input(event: InputEvent):
