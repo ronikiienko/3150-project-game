@@ -32,7 +32,7 @@ bg_color = Color(0.46877664, 0.46877712, 0.468777, 1)
 bg_color = Color(0.23392546, 0.23392549, 0.23392531, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dakft"]
-bg_color = Color(0.5158667, 0.5158667, 0.5158666, 1)
+bg_color = Color(0.085983776, 0.08598376, 0.08598376, 1)
 
 [sub_resource type="Theme" id="Theme_dxrkv"]
 Button/font_sizes/font_size = 24
@@ -56,14 +56,13 @@ camera = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("speed_controls_container", "guns_selectoin_container", "mag_label", "inventory_label", "health_label", "current_gun_label", "score_label", "note_label")]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("speed_controls_container", "guns_selectoin_container", "mag_label", "inventory_label", "health_label", "score_label", "note_label")]
 script = ExtResource("3_ryrav")
 speed_controls_container = NodePath("SpeedControls")
 guns_selectoin_container = NodePath("MarginContainer2/GunsSelection")
 mag_label = NodePath("MarginContainer/VBoxContainer/Magazine/Content")
 inventory_label = NodePath("MarginContainer/VBoxContainer/Inventory/Content")
 health_label = NodePath("MarginContainer/VBoxContainer/Health/Content")
-current_gun_label = NodePath("MarginContainer/VBoxContainer/Gun/Name")
 score_label = NodePath("GameOverview/PanelContainer/MarginContainer/VBoxContainer/ScoreContainer/Score")
 note_label = NodePath("MarginContainer3/PanelContainer/MarginContainer/Note")
 
@@ -217,18 +216,6 @@ size_flags_horizontal = 3
 text = "Inventory:   "
 
 [node name="Content" type="Label" parent="HUD/MarginContainer/VBoxContainer/Inventory"]
-layout_mode = 2
-horizontal_alignment = 2
-
-[node name="Gun" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HUD/MarginContainer/VBoxContainer/Gun"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Current gun:   "
-
-[node name="Name" type="Label" parent="HUD/MarginContainer/VBoxContainer/Gun"]
 layout_mode = 2
 horizontal_alignment = 2
 

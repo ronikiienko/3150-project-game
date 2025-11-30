@@ -30,7 +30,7 @@ var guns: Array[Gun]
 
 @export var guns_selectoin_container: Container
 
-func update_available_guns(guns: Array[Gun]):	
+func update_available_guns(guns: Array[Gun], selected: int):	
 	for child in guns_selectoin_container.get_children():
 		child.queue_free()
 		
@@ -42,12 +42,16 @@ func update_available_guns(guns: Array[Gun]):
 		var btn := Button.new()
 		btn.custom_minimum_size = Vector2(100.0, 0.0)
 		btn.text = gun.name()
+		btn.button_pressed = false
 		btn.toggle_mode = true
 		btn.button_group = group
 		btn.connect("pressed", Callable(self, "_on_gun_button_pressed").bind(i))
 		btn.connect("mouse_entered", Callable(self, "_on_gun_button_hovered").bind(i))
 		btn.connect("mouse_exited", _on_gun_button_hovered_over)
 		guns_selectoin_container.add_child(btn)
+		
+		#if i == selected:
+			#btn.button_pressed = true
 
 func _on_gun_button_pressed(new_gun: int):
 	emit_signal("gun_switched", new_gun)
@@ -71,10 +75,6 @@ func update_inventory(left: int):
 
 func update_health(left: int, full: int):	
 	health_label.text = str(left) + " / " + str(full)
-	
-@export var current_gun_label: Label
-func update_current_gun(name: String):
-	current_gun_label.text = name
 
 @export var score_label: Label
 func update_score(score: int):

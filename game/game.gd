@@ -11,6 +11,8 @@ var active_gun: Gun
 
 var _score: int = 0
 
+var _target_zoom: Vector2 = Vector2.ONE
+
 @onready var HUD = $HUD
 
 func _asteroid_destroyed_handler(asteroid: Asteroid, destroyed_by: Node):
@@ -56,10 +58,9 @@ func switch_gun(index: int):
 		
 	active_gun = gun_nodes[index]
 	active_gun.activate()
-	HUD.update_available_guns(gun_nodes)
+	HUD.update_available_guns(gun_nodes, 0)
 	HUD.update_magazine(active_gun.in_mag_count(), active_gun.mag_size())
 	HUD.update_inventory(active_gun.inventory_count())
-	HUD.update_current_gun(active_gun.gun_conf.name)
 	
 	active_gun.connect("magazine_changed", _on_magazine_changed)
 	active_gun.connect("bullets_changed", _on_total_left_changed)
@@ -108,6 +109,8 @@ func _process(delta: float):
 	var dist = camera.position.length()
 	if dist > r:
 		camera.position = camera.position.normalized() * r
+	
+	camera.zoom = camera.zoom.lerp(_target_zoom, alpha)
 		
 
 func _input(event: InputEvent):
@@ -172,9 +175,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		# zoom
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			camera.zoom *= Vector2(1 + zoom_speed, 1 + zoom_speed)
+			_target_zoom *= Vector2(1 + zoom_speed, 1 + zoom_speed)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			camera.zoom *= Vector2(1 - zoom_speed, 1 - zoom_speed)
+			_target_zoom *= Vector2(1 - zoom_speed, 1 - zoom_speed)
 			
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 		var pos = get_global_mouse_position()
