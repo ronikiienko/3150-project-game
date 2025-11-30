@@ -12,7 +12,6 @@
 [sub_resource type="Resource" id="Resource_vsp63"]
 script = ExtResource("2_qwunl")
 mass = 1.105
-gravity = 1.88
 radius = 1.41
 texture = ExtResource("7_c5uel")
 health = 100
@@ -60,7 +59,6 @@ metadata/_custom_type_script = "uid://chna4a4xykp28"
 [sub_resource type="Resource" id="Resource_j5wjh"]
 script = ExtResource("6_wjskp")
 mass = 5.0
-gravity = 1.0
 radius = 1.98
 time_to_live = 10.0
 texture = ExtResource("7_c5uel")
@@ -90,7 +88,6 @@ load_path = "res://.godot/imported/img.png-4c465fa38e4974dfeba7721e2ca1cc84.ctex
 [sub_resource type="Resource" id="Resource_bu65w"]
 script = ExtResource("6_wjskp")
 mass = 5.0
-gravity = 1.0
 radius = 1.98
 time_to_live = 10.0
 texture = SubResource("CompressedTexture2D_8y4gf")

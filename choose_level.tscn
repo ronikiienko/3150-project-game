@@ -1,17 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://17iw6icur4yb"]
+[gd_scene load_steps=6 format=3 uid="uid://58nd8ov812kg"]
 
-[ext_resource type="Script" uid="uid://bhwwihlygbp2x" path="res://choose_level.gd" id="1_yl06s"]
+[ext_resource type="Script" uid="uid://oyd2ytvrw6fj" path="res://choose_level.gd" id="1_yl06s"]
 [ext_resource type="StyleBox" uid="uid://2oy150ry5c71" path="res://UI/menu_gradient_stylebox.tres" id="2_ri4ow"]
 [ext_resource type="PackedScene" uid="uid://jmvm0kcsv4s3" path="res://game/game.tscn" id="2_wuosb"]
 [ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="3_1ovfs"]
 [ext_resource type="Resource" uid="uid://bxpwj4lwkvsdu" path="res://levels/test.tres" id="4_ohl3a"]
-[ext_resource type="Resource" uid="uid://bimc3vex5o386" path="res://levels/test2.tres" id="5_f8wy7"]
-[ext_resource type="Resource" uid="uid://hlgaqsg5g6md" path="res://levels/test3.tres" id="6_qiwg0"]
-[ext_resource type="Resource" uid="uid://di50g51kpou84" path="res://levels/test4.tres" id="7_tkb71"]
-[ext_resource type="Resource" uid="uid://dpcfpydnpbr5" path="res://levels/test5.tres" id="8_mfgt7"]
-[ext_resource type="Resource" uid="uid://cl7jaiw2hhkly" path="res://levels/test6.tres" id="9_6a5kn"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("levels_container")]
+[node name="ChooseLevel" type="Control" node_paths=PackedStringArray("levels_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_yl06s")
 game_scene = ExtResource("2_wuosb")
 levels_container = NodePath("VBoxContainer/Levels")
-levels = Array[ExtResource("3_1ovfs")]([ExtResource("4_ohl3a"), ExtResource("5_f8wy7"), ExtResource("6_qiwg0"), ExtResource("7_tkb71"), ExtResource("8_mfgt7"), ExtResource("9_6a5kn")])
+levels = Array[ExtResource("3_1ovfs")]([ExtResource("4_ohl3a")])
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

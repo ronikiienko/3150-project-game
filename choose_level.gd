@@ -3,8 +3,8 @@ extends Control
 @export var game_scene: PackedScene
 @export var levels_container: Container
 @export var levels: Array[LevelConf]
-				
 		
+	
 func _ready() -> void:
 	for level in levels:
 		var button = Button.new()
@@ -15,8 +15,8 @@ func _ready() -> void:
 func _start_level(level: LevelConf):
 	var instance = game_scene.instantiate()
 	instance.level_conf = level  # set your data
-	
-	# Replace current scene with the new one
+  
+  # Replace current scene with the new one
 	get_tree().get_current_scene().queue_free()  # remove current
 	get_tree().root.add_child(instance)          # add new scene
 	get_tree().set_current_scene(instance)
