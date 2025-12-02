@@ -13,6 +13,8 @@ var _score: int = 0
 
 var _target_zoom: Vector2 = Vector2.ONE
 
+var quadTree = QuadTree.new();
+
 @onready var HUD = $HUD
 
 func _asteroid_destroyed_handler(asteroid: Asteroid, destroyed_by: Node):
@@ -72,6 +74,8 @@ func _on_magazine_changed(new_count: int):
 func _on_total_left_changed(new_count: int):
 	HUD.update_inventory(new_count)
 	
+
+
 
 func _process(delta: float):
 	_cleanup(delta)
@@ -209,34 +213,47 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 
 func _physics_process(delta: float):
-	var bodies = get_tree().get_nodes_in_group("bodies") as Array[Body]
-
 	var G = level_conf.global_gravity
+	
+	var bodies = get_tree().get_nodes_in_group("bodies") as Array[Body]
+	var asteroids = get_tree().get_nodes_in_group("asteroids") as Array[RigidBody2D]
+	quadTree.bodies = asteroids;
+	quadTree.build();
+	if quadTree.branched:
+		for body : Body in quadTree.bodies:
+			quadTree.gravityUpdate(body, quadTree, body.gravity_radius);
+	
+	##Otherwise velocity might get out of control. This also technically makes them gradually get pulled to the center.
+	#for asteroid : Asteroid in asteroids:
+		#asteroid.linear_velocity *= 0.9995;
+	
+	
+	
 
-	for i in range(bodies.size()):
-		var b1 = bodies[i]
-		var p1 = b1.position
-		var g1 = b1.gravity_strength  # body-specific gravity factor
-
-		for j in range(i + 1, bodies.size()):
-			var b2 = bodies[j]
-			var p2 = b2.position
-			var g2 = b2.gravity_strength
-
-			var dir = p2 - p1
-			var dist_sq = dir.length_squared()
-			if dist_sq < 1.0:
-				continue  # avoid huge forces
-
-			# so that two objects with negative gravity don't pull each other
-			if g1 < 0 and g2 < 0:
-				dir = -dir
-			
-			var force_mag = G * g1 * g2 / dist_sq
-			var force = dir.normalized() * force_mag
-
-			b1.apply_force(force)
-			b2.apply_force(-force)
+	#for i in range(bodies.size()):
+		#var b1 = bodies[i]
+		#var p1 = b1.position
+		#var g1 = b1.gravity_strength  # body-specific gravity factor
+#
+		#for j in range(i + 1, bodies.size()):
+			#var b2 = bodies[j]
+			#var p2 = b2.position
+			#var g2 = b2.gravity_strength
+#
+			#var dir = p2 - p1
+			#var dist_sq = dir.length_squared()
+			#if dist_sq < 1.0:
+				#continue  # avoid huge forces
+#
+			## so that two objects with negative gravity don't pull each other
+			#if g1 < 0 and g2 < 0:
+				#dir = -dir
+			#
+			#var force_mag = G * g1 * g2 / dist_sq
+			#var force = dir.normalized() * force_mag
+#
+			#b1.apply_force(force)
+			#b2.apply_force(-force)
 
 
 func _on_hud_gun_switched(index: int) -> void:

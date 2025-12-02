@@ -3,7 +3,6 @@ extends Control
 @export var game_scene: PackedScene
 @export var levels_container: Container
 @export var levels: Array[LevelConf]
-		
 	
 func _ready() -> void:
 	for level in levels:

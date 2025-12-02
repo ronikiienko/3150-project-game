@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="LevelConf" load_steps=17 format=3 uid="uid://bimc3vex5o386"]
+
+[ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_46uo1"]
+[ext_resource type="Script" uid="uid://bpmhw4lg2jrx5" path="res://level_config/asteroid.gd" id="2_4vtlq"]
+[ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="4_c4axp"]
+[ext_resource type="Resource" uid="uid://bsyyncj6itnla" path="res://game/attack_system/asteroid/negative1.tres" id="4_m2hi4"]
+[ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="5_7cin5"]
+[ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="6_rs6km"]
+[ext_resource type="Resource" uid="uid://btgrrj0lcnmqv" path="res://guns/sniper.tres" id="7_46uo1"]
+[ext_resource type="Resource" uid="uid://cao4rojsqkhw2" path="res://guns/twin.tres" id="8_c1bjv"]
+[ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="9_co86d"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m2hi4"]
+load_path = "res://.godot/imported/asteroid.png-39d29b03d24b263ec07f62ccbd5bbc6c.ctex"
+
+[sub_resource type="Resource" id="Resource_uq7af"]
+script = ExtResource("2_4vtlq")
+mass = 50.0
+radius = 5.0
+texture = SubResource("CompressedTexture2D_m2hi4")
+health = 100
+damage = 50
+gravity_strength = 50.0
+gravity_radius = 200.0
+metadata/_custom_type_script = "uid://bpmhw4lg2jrx5"
+
+[sub_resource type="Resource" id="Resource_rtc50"]
+script = ExtResource("4_c4axp")
+asteroid = SubResource("Resource_uq7af")
+interval = 0.2
+count = 150
+angle_spread_deg = 360.0
+distance_base = 800.0
+distance_spread = 200.0
+velocity_base = 50.0
+velocity_spread = 1.0
+asteroid_time_to_live_base = 120.0
+metadata/_custom_type_script = "uid://yxj0jnvultwm"
+
+[sub_resource type="Resource" id="Resource_e2scx"]
+script = ExtResource("1_46uo1")
+attack = SubResource("Resource_rtc50")
+metadata/_custom_type_script = "uid://din6ml0qfdwfl"
+
+[sub_resource type="Resource" id="Resource_tqan3"]
+script = ExtResource("4_c4axp")
+asteroid = ExtResource("4_m2hi4")
+count = 60
+angle_spread_deg = 360.0
+distance_base = 800.0
+distance_spread = 200.0
+velocity_base = 50.0
+velocity_spread = 1.0
+asteroid_time_to_live_base = 120.0
+metadata/_custom_type_script = "uid://yxj0jnvultwm"
+
+[sub_resource type="Resource" id="Resource_2gebf"]
+script = ExtResource("1_46uo1")
+attack = SubResource("Resource_tqan3")
+metadata/_custom_type_script = "uid://din6ml0qfdwfl"
+
+[sub_resource type="Resource" id="Resource_ee6o4"]
+script = ExtResource("5_7cin5")
+attack_schedule_items = Array[ExtResource("1_46uo1")]([SubResource("Resource_e2scx"), SubResource("Resource_2gebf")])
+metadata/_custom_type_script = "uid://chna4a4xykp28"
+
+[resource]
+script = ExtResource("9_co86d")
+available_guns = Array[ExtResource("6_rs6km")]([ExtResource("8_c1bjv"), ExtResource("7_46uo1")])
+attack_schedule = SubResource("Resource_ee6o4")
+name = "Level 2"
+global_gravity = 300.0
+health = 100
+camera_speed = 600.0
+metadata/_custom_type_script = "uid://bjald2idwgjl"

@@ -34,4 +34,3 @@ func _ready() -> void:
 	max_contacts_reported = 1
 	
 	add_to_group("bodies")
-	
