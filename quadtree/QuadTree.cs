@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 [GlobalClass]
 
@@ -18,10 +19,14 @@ public partial class QuadTree : QuadTreeElement
 
             if (insertResult == 1) //If the tree fails to insert the body
             {
-                RigidBody2D current = bodies[i];
-                bodies.Remove(current);
-                current.Free();
-                i--;
+                bool isStatic = bodies[i].Get("isStatic").AsBool();
+                if (isStatic)
+                {
+                    RigidBody2D current = bodies[i];
+                    bodies.Remove(current);
+                    current.Free();
+                    i--;
+                }
             }
         }
         updateTreeCOG();
@@ -82,17 +87,16 @@ public partial class QuadTree : QuadTreeElement
         }
     }
 
-    public float theta = 0.3F;
-    public float G = 2000.0F;
+    public float theta = 0.8F;
+    //public float G = 4000.0F;
 
-
-
-    public void gravityUpdate(RigidBody2D body, QuadTreeElement element, float gravityRange) {
+    public void gravityUpdate(RigidBody2D body, QuadTreeElement element, float G) {
         Stack<QuadTreeElement> stack = new Stack<QuadTreeElement>();
         stack.Push(element);
+        float gravityRange = (float)body.Get("gravity_range").AsDouble();
+        float g1 = (float)body.Get("gravity_strength").AsDouble();
+        bool isStatic = body.Get("isStatic").AsBool();
         while (stack.Count > 0) {
-
-            float g1 = (float)body.Get("gravity_strength").AsDouble();
 
             QuadTreeElement current = stack.Pop();
             if (current.gravityStrength == 0)
@@ -104,6 +108,7 @@ public partial class QuadTree : QuadTreeElement
             }
 
             float dist = body.Position.DistanceTo(current.centerOfGravity);
+
             float sd = current.bounds.Size.X / dist;
              
             if (sd >= theta)
@@ -118,11 +123,13 @@ public partial class QuadTree : QuadTreeElement
             }
             else
             {
-                if (dist <= gravityRange)
+
+                if (!isStatic)
                 {
                     //float force = G * ((body.F * current.mass) / (dist * dist));
-                    float force = G * ((g1 * current.gravityStrength) / (dist * dist));
+                    float force = G * (g1 * current.gravityStrength) / (dist * dist);
                     Vector2 forceVector = body.Position.DirectionTo(current.centerOfGravity) * force;
+                    GD.Print(dist);
                     body.ApplyForce(forceVector);
 
                     ////Makes blobs stick together better

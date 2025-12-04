@@ -8,6 +8,8 @@ class_name Body
 
 @export var radius: float;
 
+@export var isStatic = false;
+
 var _sprite: Sprite2D
 var _collision_shape: CollisionShape2D
 var _collision_circle: CircleShape2D
@@ -32,5 +34,4 @@ func _ready() -> void:
 	
 	contact_monitor = true
 	max_contacts_reported = 1
-	
 	add_to_group("bodies")

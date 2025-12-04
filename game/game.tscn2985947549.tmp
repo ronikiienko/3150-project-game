@@ -1,0 +1,310 @@
+[gd_scene load_steps=16 format=3 uid="uid://jmvm0kcsv4s3"]
+
+[ext_resource type="Script" uid="uid://b8bhffxbnhxdh" path="res://game/game.gd" id="1_feb5d"]
+[ext_resource type="Script" uid="uid://bf4h56bsb2v0" path="res://game/hud.gd" id="3_ryrav"]
+[ext_resource type="Script" uid="uid://cqn6v7xglfadn" path="res://game/pause_menu.gd" id="4_fc0e3"]
+
+[sub_resource type="Theme" id="Theme_feb5d"]
+Label/font_sizes/font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fc0e3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jktm"]
+bg_color = Color(0.018768797, 0.1361706, 0.22528502, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryrav"]
+bg_color = Color(0.030805774, 0.18162152, 0.29038608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eow3j"]
+bg_color = Color(0.016177913, 0.09143957, 0.15727878, 1)
+
+[sub_resource type="Theme" id="Theme_fc0e3"]
+Button/font_sizes/font_size = 30
+Button/styles/focus = SubResource("StyleBoxEmpty_fc0e3")
+Button/styles/hover = SubResource("StyleBoxFlat_7jktm")
+Button/styles/normal = SubResource("StyleBoxFlat_ryrav")
+Button/styles/pressed = SubResource("StyleBoxFlat_eow3j")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxrkv"]
+bg_color = Color(0.46877664, 0.46877712, 0.468777, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fuuu"]
+bg_color = Color(0.23392546, 0.23392549, 0.23392531, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dakft"]
+bg_color = Color(0.085983776, 0.08598376, 0.08598376, 1)
+
+[sub_resource type="Theme" id="Theme_dxrkv"]
+Button/font_sizes/font_size = 24
+Button/styles/hover = SubResource("StyleBoxFlat_dxrkv")
+Button/styles/normal = SubResource("StyleBoxFlat_4fuuu")
+Button/styles/pressed = SubResource("StyleBoxFlat_dakft")
+
+[sub_resource type="Theme" id="Theme_4fuuu"]
+Label/font_sizes/font_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc0e3"]
+bg_color = Color(0.0627451, 0.12156863, 0.18039216, 0.827451)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_feb5d")
+camera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("speed_controls_container", "guns_selectoin_container", "mag_label", "inventory_label", "health_label", "score_label", "note_label")]
+script = ExtResource("3_ryrav")
+speed_controls_container = NodePath("SpeedControls")
+guns_selectoin_container = NodePath("MarginContainer2/GunsSelection")
+mag_label = NodePath("MarginContainer/VBoxContainer/Magazine/Content")
+inventory_label = NodePath("MarginContainer/VBoxContainer/Inventory/Content")
+health_label = NodePath("MarginContainer/VBoxContainer/Health/Content")
+score_label = NodePath("GameOverview/PanelContainer/MarginContainer/VBoxContainer/ScoreContainer/Score")
+note_label = NodePath("MarginContainer3/PanelContainer/MarginContainer/Note")
+
+[node name="GameOverview" type="MarginContainer" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/GameOverview"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/GameOverview/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameOverview/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = SubResource("Theme_feb5d")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="Header" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Game overview"
+
+[node name="ScoreContainer" type="HBoxContainer" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/ScoreContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Score:"
+
+[node name="Score" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/ScoreContainer"]
+custom_minimum_size = Vector2(57.406, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="TimeContainer" type="HBoxContainer" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/TimeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Game time:"
+
+[node name="Time" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/TimeContainer"]
+layout_mode = 2
+text = "00:00"
+
+[node name="WavesContainer" type="HBoxContainer" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/WavesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Waves launched:"
+
+[node name="Waves" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/WavesContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="SpeedControls" type="HBoxContainer" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_right = 75.0
+offset_bottom = 35.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_fc0e3")
+theme_override_constants/separation = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 150.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GunsSelection" type="HBoxContainer" parent="HUD/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_dxrkv")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -204.0
+offset_top = -90.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = SubResource("Theme_4fuuu")
+
+[node name="Health" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/VBoxContainer/Health"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Health:   "
+
+[node name="Content" type="Label" parent="HUD/MarginContainer/VBoxContainer/Health"]
+layout_mode = 2
+horizontal_alignment = 2
+
+[node name="Magazine" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/VBoxContainer/Magazine"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mag:   "
+
+[node name="Content" type="Label" parent="HUD/MarginContainer/VBoxContainer/Magazine"]
+layout_mode = 2
+horizontal_alignment = 2
+
+[node name="Inventory" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/VBoxContainer/Inventory"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Inventory:   "
+
+[node name="Content" type="Label" parent="HUD/MarginContainer/VBoxContainer/Inventory"]
+layout_mode = 2
+horizontal_alignment = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer3/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Note" type="Label" parent="HUD/MarginContainer3/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="MarginContainer4" type="MarginContainer" parent="HUD"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -28.5
+offset_bottom = 28.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+
+[node name="Button" type="Button" parent="HUD/MarginContainer4"]
+layout_mode = 2
+text = "?"
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+script = ExtResource("4_fc0e3")
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fc0e3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/PanelContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 11
+
+[node name="Resume" type="Button" parent="PauseMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Restart" type="Button" parent="PauseMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Main menu" type="Button" parent="PauseMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main menu"
+
+[node name="Quit game" type="Button" parent="PauseMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit game"
+
+[connection signal="gun_hovered" from="HUD" to="." method="_on_hud_gun_hovered"]
+[connection signal="gun_hovered_over" from="HUD" to="." method="_on_hud_gun_hovered_over"]
+[connection signal="gun_switched" from="HUD" to="." method="_on_hud_gun_switched"]
+[connection signal="help_hovered" from="HUD" to="." method="_on_hud_help_hovered"]
+[connection signal="help_hovered_over" from="HUD" to="." method="_on_hud_help_hovered_over"]
+[connection signal="sim_speed_changed" from="HUD" to="." method="_on_hud_sim_speed_changed"]
+[connection signal="mouse_entered" from="HUD/MarginContainer4/Button" to="HUD" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="HUD/MarginContainer4/Button" to="HUD" method="_on_button_mouse_exited"]
+[connection signal="main_menu" from="PauseMenu" to="." method="_on_pause_menu_main_menu"]
+[connection signal="quit" from="PauseMenu" to="." method="_on_pause_menu_quit"]
+[connection signal="restart" from="PauseMenu" to="." method="_on_pause_menu_restart"]
+[connection signal="toggle_pause" from="PauseMenu" to="." method="_on_pause_menu_toggle_pause"]
+[connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
+[connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Main menu" to="PauseMenu" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PauseMenu/PanelContainer/VBoxContainer/Quit game" to="PauseMenu" method="_on_quit_game_pressed"]

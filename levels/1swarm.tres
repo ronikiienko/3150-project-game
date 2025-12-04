@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="LevelConf" load_steps=15 format=3 uid="uid://dt8gg6foedlgi"]
+
+[ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_jbjua"]
+[ext_resource type="Resource" uid="uid://d2g3uo1edql1l" path="res://game/attack_system/asteroid/basic.tres" id="2_1svds"]
+[ext_resource type="Resource" uid="uid://bsyyncj6itnla" path="res://game/attack_system/asteroid/negative1.tres" id="2_i37kj"]
+[ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="3_f5a3n"]
+[ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="4_xd4ji"]
+[ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="5_v1erl"]
+[ext_resource type="Resource" uid="uid://cao4rojsqkhw2" path="res://guns/twin.tres" id="6_qhjuc"]
+[ext_resource type="Resource" uid="uid://btgrrj0lcnmqv" path="res://guns/sniper.tres" id="7_4gbjg"]
+[ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="8_o7pok"]
+
+[sub_resource type="Resource" id="Resource_8y4gf"]
+script = ExtResource("3_f5a3n")
+asteroid = ExtResource("2_1svds")
+interval = 0.2
+count = 300
+angle_spread_deg = 360.0
+distance_base = 800.0
+distance_spread = 200.0
+velocity_base = 50.0
+velocity_spread = 1.0
+asteroid_time_to_live_base = 120.0
+metadata/_custom_type_script = "uid://yxj0jnvultwm"
+
+[sub_resource type="Resource" id="Resource_qwunl"]
+script = ExtResource("1_jbjua")
+attack = SubResource("Resource_8y4gf")
+metadata/_custom_type_script = "uid://din6ml0qfdwfl"
+
+[sub_resource type="Resource" id="Resource_q438e"]
+script = ExtResource("3_f5a3n")
+asteroid = ExtResource("2_i37kj")
+interval = 0.2
+count = 50
+metadata/_custom_type_script = "uid://yxj0jnvultwm"
+
+[sub_resource type="Resource" id="Resource_rcs8e"]
+script = ExtResource("1_jbjua")
+attack = SubResource("Resource_q438e")
+start_time = 50.0
+metadata/_custom_type_script = "uid://din6ml0qfdwfl"
+
+[sub_resource type="Resource" id="Resource_ee6o4"]
+script = ExtResource("4_xd4ji")
+attack_schedule_items = Array[ExtResource("1_jbjua")]([SubResource("Resource_qwunl"), SubResource("Resource_rcs8e")])
+metadata/_custom_type_script = "uid://chna4a4xykp28"
+
+[resource]
+script = ExtResource("8_o7pok")
+available_guns = Array[ExtResource("5_v1erl")]([ExtResource("6_qhjuc"), ExtResource("7_4gbjg")])
+attack_schedule = SubResource("Resource_ee6o4")
+name = "Swarm"
+global_gravity = 300.0
+health = 100
+camera_speed = 600.0
+metadata/_custom_type_script = "uid://bjald2idwgjl"

@@ -15,3 +15,5 @@ class_name GunConf
 @export var size: float = 1
 @export var collision_radius: float
 @export var rotation_speed_degrees: float
+@export var gravity_strength: float
+@export var gravity_radius: float
