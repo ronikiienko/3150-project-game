@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AsteroidConf" load_steps=3 format=3 uid="uid://d2g3uo1edql1l"]
+
+[ext_resource type="Script" uid="uid://bpmhw4lg2jrx5" path="res://level_config/asteroid.gd" id="1_6s5uj"]
+[ext_resource type="Texture2D" uid="uid://ikixufjtvomo" path="res://levels/asteroid/images/asteroid.png" id="2_jdp0v"]
+
+[resource]
+script = ExtResource("1_6s5uj")
+mass = 10.0
+radius = 5.0
+texture = ExtResource("2_jdp0v")
+health = 100
+damage = 10
+gravity_strength = 20.0
+gravity_radius = 10000.0
+metadata/_custom_type_script = "uid://bpmhw4lg2jrx5"

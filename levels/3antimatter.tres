@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="LevelConf" load_steps=15 format=3 uid="uid://bv0qqrjpdtgtm"]
 
 [ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_oi5cj"]
-[ext_resource type="Resource" uid="uid://d2g3uo1edql1l" path="res://game/attack_system/asteroid/basic.tres" id="2_erlqs"]
+[ext_resource type="Resource" uid="uid://d2g3uo1edql1l" path="res://levels/asteroid/basic.tres" id="2_erlqs"]
 [ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="3_03f41"]
-[ext_resource type="Resource" uid="uid://s7ee6qjlxrph" path="res://game/attack_system/asteroid/negative2.tres" id="4_oi5cj"]
+[ext_resource type="Resource" uid="uid://s7ee6qjlxrph" path="res://levels/asteroid/negative2.tres" id="4_oi5cj"]
 [ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="5_d43wi"]
 [ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="6_r6g8c"]
-[ext_resource type="Resource" uid="uid://cao4rojsqkhw2" path="res://guns/twin.tres" id="7_48xpa"]
-[ext_resource type="Resource" uid="uid://btgrrj0lcnmqv" path="res://guns/sniper.tres" id="8_56shf"]
+[ext_resource type="Resource" uid="uid://cao4rojsqkhw2" path="res://levels/guns/twin.tres" id="7_48xpa"]
+[ext_resource type="Resource" uid="uid://btgrrj0lcnmqv" path="res://levels/guns/sniper.tres" id="8_56shf"]
 [ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="9_ph61a"]
 
 [sub_resource type="Resource" id="Resource_odby3"]

@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="LevelConf" load_steps=13 format=3 uid="uid://cmdc8hjla05a7"]
 
 [ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_uqyim"]
-[ext_resource type="Resource" uid="uid://d2g3uo1edql1l" path="res://game/attack_system/asteroid/basic.tres" id="2_c2ayl"]
+[ext_resource type="Resource" uid="uid://d2g3uo1edql1l" path="res://levels/asteroid/basic.tres" id="2_c2ayl"]
 [ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="3_sukc1"]
 [ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="5_qktmg"]
-[ext_resource type="Resource" uid="uid://sor0qqswwywc" path="res://guns/bullets/diamond.tres" id="6_018mv"]
+[ext_resource type="Resource" uid="uid://sor0qqswwywc" path="res://levels/guns/bullets/diamond.tres" id="6_018mv"]
 [ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="6_pw1tu"]
-[ext_resource type="Texture2D" uid="uid://dvbar1dfwlg55" path="res://guns/sniper.png" id="7_uqyim"]
+[ext_resource type="Texture2D" uid="uid://dvbar1dfwlg55" path="res://levels/guns/sniper.png" id="7_uqyim"]
 [ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="9_hiygp"]
 
 [sub_resource type="Resource" id="Resource_odby3"]
