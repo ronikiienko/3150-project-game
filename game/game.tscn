@@ -114,30 +114,6 @@ layout_mode = 2
 text = "0"
 horizontal_alignment = 2
 
-[node name="TimeContainer" type="HBoxContainer" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/TimeContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Game time:"
-
-[node name="Time" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/TimeContainer"]
-layout_mode = 2
-text = "00:00"
-
-[node name="WavesContainer" type="HBoxContainer" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/WavesContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Waves launched:"
-
-[node name="Waves" type="Label" parent="HUD/GameOverview/PanelContainer/MarginContainer/VBoxContainer/WavesContainer"]
-layout_mode = 2
-text = "0"
-
 [node name="SpeedControls" type="HBoxContainer" parent="HUD"]
 anchors_preset = 5
 anchor_left = 0.5
