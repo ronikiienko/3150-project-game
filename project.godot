@@ -13,7 +13,6 @@ config_version=5
 config/name="3150-project-game"
 run/main_scene="uid://erxpp08t0nnp"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
-config/icon="res://icon.svg"
 
 [dotnet]
 
