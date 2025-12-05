@@ -33,7 +33,7 @@ The level select screen. This is where custom levels are added.
 
 ### Scene Tree
 The scene tree (main layout of the program and the UI). Scenes are manually created and stored in .tscn files, which are nodes organized in a tree structure that can be instantiated as a whole. Scenes are switched from code.  
-In Godot engine you can create GUI in editor, adding nodes to the tree. It’s not in code like html but fundamentally requires some work to do.
+In Godot engine you can create GUI in editor, adding nodes to the tree. It’s not in code like html but fundamentally requires same work to do.
 
 ### UI directory
 Files in the UI directory: Not code, but custom theme configuration for our game.
