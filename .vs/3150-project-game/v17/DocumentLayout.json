@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\micha\\Desktop\\3150-project-game\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F9F33B72-4852-4944-940C-059AB1E4F518}|3150-project-game.csproj|c:\\users\\micha\\desktop\\3150-project-game\\quadtree\\quadtree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9F33B72-4852-4944-940C-059AB1E4F518}|3150-project-game.csproj|solutionrelative:quadtree\\quadtree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9F33B72-4852-4944-940C-059AB1E4F518}|3150-project-game.csproj|c:\\users\\micha\\desktop\\3150-project-game\\quadtree\\quadtreeelement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9F33B72-4852-4944-940C-059AB1E4F518}|3150-project-game.csproj|solutionrelative:quadtree\\quadtreeelement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QuadTreeElement.cs",
+              "DocumentMoniker": "C:\\Users\\micha\\Desktop\\3150-project-game\\quadtree\\QuadTreeElement.cs",
+              "RelativeDocumentMoniker": "quadtree\\QuadTreeElement.cs",
+              "ToolTip": "C:\\Users\\micha\\Desktop\\3150-project-game\\quadtree\\QuadTreeElement.cs",
+              "RelativeToolTip": "quadtree\\QuadTreeElement.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAowAIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T10:07:11.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuadTree.cs",
+              "DocumentMoniker": "C:\\Users\\micha\\Desktop\\3150-project-game\\quadtree\\QuadTree.cs",
+              "RelativeDocumentMoniker": "quadtree\\QuadTree.cs",
+              "ToolTip": "C:\\Users\\micha\\Desktop\\3150-project-game\\quadtree\\QuadTree.cs",
+              "RelativeToolTip": "quadtree\\QuadTree.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAcwFkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T05:01:27.37Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

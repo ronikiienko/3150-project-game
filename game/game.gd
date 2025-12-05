@@ -13,6 +13,10 @@ var _score: int = 0
 
 var _target_zoom: Vector2 = Vector2.ONE
 
+var quadTree = QuadTree.new();
+
+var showTree : bool = false;
+
 @onready var HUD = $HUD
 
 func _asteroid_destroyed_handler(asteroid: Asteroid, destroyed_by: Node):
@@ -23,6 +27,7 @@ func _asteroid_destroyed_handler(asteroid: Asteroid, destroyed_by: Node):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	HUD.set_available_speeds(level_conf.game_speeds, level_conf.default_speed_index)
+	Engine.time_scale = level_conf.game_speeds[level_conf.default_speed_index];
 	
 	_attack_system = AttackSystem.new()
 	_attack_system.attack_schedule = level_conf.attack_schedule
@@ -37,7 +42,6 @@ func _ready() -> void:
 		var typed_gun_conf = gun_conf as GunConf
 		var gun_node = Gun.new()
 		gun_node.gun_conf = typed_gun_conf
-
 		gun_nodes.push_back(gun_node)
 		
 		add_child(gun_node)
@@ -72,6 +76,8 @@ func _on_magazine_changed(new_count: int):
 func _on_total_left_changed(new_count: int):
 	HUD.update_inventory(new_count)
 	
+
+
 
 func _process(delta: float):
 	_cleanup(delta)
@@ -168,14 +174,16 @@ func _handle_gun_note(gun: Gun):
 var _cam_vel := Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot"):
-		active_gun.start_shooting()
-		
-	if event.is_action_released("shoot"):
-		active_gun.stop_shooting()
-		
-	if event.is_action_pressed("reload"):
-		active_gun.reload()
+	
+	if is_instance_valid(active_gun):
+		if event.is_action_pressed("shoot"):
+			active_gun.start_shooting()
+			
+		if event.is_action_released("shoot"):
+			active_gun.stop_shooting()
+			
+		if event.is_action_pressed("reload"):
+			active_gun.reload()
 		
 		# zoom
 	if event is InputEventMouseButton and event.pressed:
@@ -207,12 +215,31 @@ func _unhandled_input(event: InputEvent) -> void:
 					_handle_gun_note(p)
 				p = p.get_parent()
 				
+				
 
 func _physics_process(delta: float):
-	var bodies = get_tree().get_nodes_in_group("bodies") as Array[Body]
-
 	var G = level_conf.global_gravity
-
+	
+	var bodies = get_tree().get_nodes_in_group("bodies") as Array[Body]
+	#var bullets = get_tree().get_nodes_in_group("bullets") as Array[Body]
+	#var asteroids = get_tree().get_nodes_in_group("asteroids") as Array[RigidBody2D]
+	#
+	#quadTree.bodies = bodies;
+	#quadTree.build();
+	#if quadTree.branched:
+		#for body : Body in quadTree.bodies:
+			#quadTree.gravityUpdate(body, quadTree, G);
+			##print(body.gravity_strength);
+		#
+	#
+	#if(is_instance_valid(active_gun)):
+		#active_gun.position += Vector2.ONE;
+	#Otherwise velocity might get out of control.
+	#for body : Body in bodies:
+		#body.linear_velocity *= 0.9995;
+	#print(quadTree.bodies.size());
+	#if(quadTree.bodies.size() > 5):
+		#print(quadTree.bodies[0]);
 	for i in range(bodies.size()):
 		var b1 = bodies[i]
 		var p1 = b1.position
@@ -237,6 +264,7 @@ func _physics_process(delta: float):
 
 			b1.apply_force(force)
 			b2.apply_force(-force)
+	queue_redraw();
 
 
 func _on_hud_gun_switched(index: int) -> void:
@@ -263,10 +291,16 @@ func _cleanup(delta: float):
 			if body.time_to_live <= 0:
 				body.queue_free()
 	pass
-	
+
 func _draw():
 	draw_circle(Vector2.ZERO, level_conf.world_radius, Color())
-
+	
+	if showTree:
+		for element : QuadTreeElement in quadTree.elements:
+			draw_line(element.bounds.position, element.bounds.position + Vector2(element.bounds.size.x, 0), Color.WHITE);
+			draw_line(element.bounds.position + Vector2(element.bounds.size.x, 0), element.bounds.position + element.bounds.size, Color.WHITE);
+			draw_line(Vector2(element.bounds.position + element.bounds.size), element.bounds.position + Vector2(0, element.bounds.size.y), Color.WHITE);
+			draw_line(element.bounds.position + Vector2(0, element.bounds.size.y), element.bounds.position, Color.WHITE);
 
 func _pause():
 	get_tree().paused = true

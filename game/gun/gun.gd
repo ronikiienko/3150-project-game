@@ -47,8 +47,8 @@ func _ready() -> void:
 	
 	radius = gun_conf.size / 2
 	texture = gun_conf.texture
-	gravity_strength = 0.0
-	
+	gravity_strength = gun_conf.gravity_strength;
+	gravity_radius = gun_conf.gravity_radius;
 	super._ready()
 	
 	_sprite.z_index = 10
@@ -67,6 +67,8 @@ func _ready() -> void:
 	_mechanics.connect("fire_bullets", _fire_bullets_handler)
 	_mechanics.connect("magazine_changed", _magazine_changed_handler)
 	_mechanics.connect("reload_finished", _reload_finished_handler)
+	
+	reload();
 	
 	connect("body_entered", _on_body_entered_handler)
 	

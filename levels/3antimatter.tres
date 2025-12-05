@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="LevelConf" load_steps=15 format=3 uid="uid://bv0qqrjpdtgtm"]
+
+[ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_oi5cj"]
+[ext_resource type="Resource" uid="uid://d2g3uo1edql1l" path="res://game/attack_system/asteroid/basic.tres" id="2_erlqs"]
+[ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="3_03f41"]
+[ext_resource type="Resource" uid="uid://s7ee6qjlxrph" path="res://game/attack_system/asteroid/negative2.tres" id="4_oi5cj"]
+[ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="5_d43wi"]
+[ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="6_r6g8c"]
+[ext_resource type="Resource" uid="uid://cao4rojsqkhw2" path="res://guns/twin.tres" id="7_48xpa"]
+[ext_resource type="Resource" uid="uid://btgrrj0lcnmqv" path="res://guns/sniper.tres" id="8_56shf"]
+[ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="9_ph61a"]
+
+[sub_resource type="Resource" id="Resource_odby3"]
+script = ExtResource("3_03f41")
+asteroid = ExtResource("2_erlqs")
+interval = 0.5
+count = 100
+angle_spread_deg = 360.0
+distance_base = 700.0
+distance_spread = 300.0
+velocity_base = 80.0
+asteroid_time_to_live_base = 50.0
+metadata/_custom_type_script = "uid://yxj0jnvultwm"
+
+[sub_resource type="Resource" id="Resource_gq68x"]
+script = ExtResource("1_oi5cj")
+attack = SubResource("Resource_odby3")
+metadata/_custom_type_script = "uid://din6ml0qfdwfl"
+
+[sub_resource type="Resource" id="Resource_8y4gf"]
+script = ExtResource("3_03f41")
+asteroid = ExtResource("4_oi5cj")
+count = 50
+angle_spread_deg = 360.0
+distance_base = 500.0
+distance_spread = 300.0
+velocity_base = 50.0
+asteroid_time_to_live_base = 50.0
+metadata/_custom_type_script = "uid://yxj0jnvultwm"
+
+[sub_resource type="Resource" id="Resource_qwunl"]
+script = ExtResource("1_oi5cj")
+attack = SubResource("Resource_8y4gf")
+metadata/_custom_type_script = "uid://din6ml0qfdwfl"
+
+[sub_resource type="Resource" id="Resource_ee6o4"]
+script = ExtResource("5_d43wi")
+attack_schedule_items = Array[ExtResource("1_oi5cj")]([SubResource("Resource_gq68x"), SubResource("Resource_qwunl")])
+metadata/_custom_type_script = "uid://chna4a4xykp28"
+
+[resource]
+script = ExtResource("9_ph61a")
+available_guns = Array[ExtResource("6_r6g8c")]([ExtResource("7_48xpa"), ExtResource("8_56shf")])
+attack_schedule = SubResource("Resource_ee6o4")
+name = "Antimatter"
+global_gravity = 300.0
+health = 100
+description = "Asteroids with negative mass are spawned and repel away normal asteroids!"
+camera_speed = 600.0
+metadata/_custom_type_script = "uid://bjald2idwgjl"

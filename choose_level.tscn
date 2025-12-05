@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://58nd8ov812kg"]
+[gd_scene load_steps=9 format=3 uid="uid://58nd8ov812kg"]
 
 [ext_resource type="Script" uid="uid://oyd2ytvrw6fj" path="res://choose_level.gd" id="1_yl06s"]
 [ext_resource type="StyleBox" uid="uid://2oy150ry5c71" path="res://UI/menu_gradient_stylebox.tres" id="2_ri4ow"]
 [ext_resource type="PackedScene" uid="uid://jmvm0kcsv4s3" path="res://game/game.tscn" id="2_wuosb"]
 [ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="3_1ovfs"]
-[ext_resource type="Resource" uid="uid://bxpwj4lwkvsdu" path="res://levels/test.tres" id="4_ohl3a"]
+[ext_resource type="Resource" uid="uid://dt8gg6foedlgi" path="res://levels/1swarm.tres" id="4_ohl3a"]
+[ext_resource type="Resource" uid="uid://bxpwj4lwkvsdu" path="res://levels/2sharpshooter.tres" id="5_ohl3a"]
+[ext_resource type="Resource" uid="uid://bv0qqrjpdtgtm" path="res://levels/3antimatter.tres" id="6_xjp22"]
+[ext_resource type="Resource" uid="uid://cmdc8hjla05a7" path="res://levels/4quickdraw.tres" id="7_lyb47"]
 
 [node name="ChooseLevel" type="Control" node_paths=PackedStringArray("levels_container")]
 layout_mode = 3
@@ -16,7 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_yl06s")
 game_scene = ExtResource("2_wuosb")
 levels_container = NodePath("VBoxContainer/Levels")
-levels = Array[ExtResource("3_1ovfs")]([ExtResource("4_ohl3a")])
+levels = Array[ExtResource("3_1ovfs")]([ExtResource("4_ohl3a"), ExtResource("5_ohl3a"), ExtResource("6_xjp22"), ExtResource("7_lyb47")])
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BulletConf" load_steps=3 format=3 uid="uid://d2f10c0ba6q17"]
+
+[ext_resource type="Script" uid="uid://bl7fgchouk2a2" path="res://level_config/bullet.gd" id="1_dvcvk"]
+[ext_resource type="Texture2D" uid="uid://d3stxqas3n56a" path="res://guns/bullets/squarecore.png" id="2_jx7w8"]
+
+[resource]
+script = ExtResource("1_dvcvk")
+mass = 50.0
+radius = 4.0
+time_to_live = 10.0
+texture = ExtResource("2_jx7w8")
+health = 1
+damage = 300
+metadata/_custom_type_script = "uid://bl7fgchouk2a2"

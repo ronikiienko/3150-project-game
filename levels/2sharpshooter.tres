@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="LevelConf" load_steps=13 format=3 uid="uid://bxpwj4lwkvsdu"]
+
+[ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_mok24"]
+[ext_resource type="Resource" uid="uid://d2g3uo1edql1l" path="res://game/attack_system/asteroid/basic.tres" id="2_ooxxi"]
+[ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="4_fx7je"]
+[ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="6_xnsfi"]
+[ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="7_y02gn"]
+[ext_resource type="Resource" uid="uid://btgrrj0lcnmqv" path="res://guns/sniper.tres" id="9_omyh1"]
+[ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="10_8a1ar"]
+
+[sub_resource type="Resource" id="Resource_8y4gf"]
+script = ExtResource("4_fx7je")
+asteroid = ExtResource("2_ooxxi")
+interval = 0.5
+count = 35
+angle_spread_deg = 360.0
+distance_base = 700.0
+distance_spread = 300.0
+velocity_base = 50.0
+asteroid_time_to_live_base = 60.0
+metadata/_custom_type_script = "uid://yxj0jnvultwm"
+
+[sub_resource type="Resource" id="Resource_qwunl"]
+script = ExtResource("1_mok24")
+attack = SubResource("Resource_8y4gf")
+metadata/_custom_type_script = "uid://din6ml0qfdwfl"
+
+[sub_resource type="Resource" id="Resource_odby3"]
+script = ExtResource("4_fx7je")
+asteroid = ExtResource("2_ooxxi")
+count = 1
+distance_base = 200.0
+velocity_base = 150.0
+asteroid_time_to_live_base = 20.0
+metadata/_custom_type_script = "uid://yxj0jnvultwm"
+
+[sub_resource type="Resource" id="Resource_gq68x"]
+script = ExtResource("1_mok24")
+attack = SubResource("Resource_odby3")
+start_time = 40.0
+metadata/_custom_type_script = "uid://din6ml0qfdwfl"
+
+[sub_resource type="Resource" id="Resource_ee6o4"]
+script = ExtResource("6_xnsfi")
+attack_schedule_items = Array[ExtResource("1_mok24")]([SubResource("Resource_qwunl"), SubResource("Resource_gq68x")])
+metadata/_custom_type_script = "uid://chna4a4xykp28"
+
+[resource]
+script = ExtResource("10_8a1ar")
+available_guns = Array[ExtResource("7_y02gn")]([ExtResource("9_omyh1")])
+attack_schedule = SubResource("Resource_ee6o4")
+name = "Sharpshooter"
+global_gravity = 300.0
+health = 100
+description = "You are only given a sniper and must survive fast asteroids coming toward you."
+metadata/_custom_type_script = "uid://bjald2idwgjl"
