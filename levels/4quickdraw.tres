@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="LevelConf" load_steps=11 format=3 uid="uid://cmdc8hjla05a7"]
+
+[ext_resource type="Script" uid="uid://din6ml0qfdwfl" path="res://level_config/attack_schedule_item.gd" id="1_uqyim"]
+[ext_resource type="Resource" uid="uid://d2g3uo1edql1l" path="res://game/attack_system/asteroid/basic.tres" id="2_c2ayl"]
+[ext_resource type="Script" uid="uid://yxj0jnvultwm" path="res://level_config/attack.gd" id="3_sukc1"]
+[ext_resource type="Script" uid="uid://chna4a4xykp28" path="res://level_config/attack_schedule.gd" id="5_qktmg"]
+[ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="6_pw1tu"]
+[ext_resource type="Resource" uid="uid://btgrrj0lcnmqv" path="res://guns/sniper.tres" id="8_pj8e4"]
+[ext_resource type="Script" uid="uid://bjald2idwgjl" path="res://level_config/level.gd" id="9_hiygp"]
+
+[sub_resource type="Resource" id="Resource_odby3"]
+script = ExtResource("3_sukc1")
+asteroid = ExtResource("2_c2ayl")
+interval = 2.0
+count = 25
+angle_spread_deg = 360.0
+distance_base = 200.0
+distance_spread = 50.0
+velocity_base = 250.0
+velocity_spread = 200.0
+asteroid_time_to_live_base = 50.0
+metadata/_custom_type_script = "uid://yxj0jnvultwm"
+
+[sub_resource type="Resource" id="Resource_gq68x"]
+script = ExtResource("1_uqyim")
+attack = SubResource("Resource_odby3")
+metadata/_custom_type_script = "uid://din6ml0qfdwfl"
+
+[sub_resource type="Resource" id="Resource_ee6o4"]
+script = ExtResource("5_qktmg")
+attack_schedule_items = Array[ExtResource("1_uqyim")]([SubResource("Resource_gq68x")])
+metadata/_custom_type_script = "uid://chna4a4xykp28"
+
+[resource]
+script = ExtResource("9_hiygp")
+available_guns = Array[ExtResource("6_pw1tu")]([ExtResource("8_pj8e4")])
+attack_schedule = SubResource("Resource_ee6o4")
+name = "Quick Draw"
+global_gravity = 300.0
+health = 100
+description = "React fast to the asteroids and survive!"
+camera_speed = 600.0
+metadata/_custom_type_script = "uid://bjald2idwgjl"

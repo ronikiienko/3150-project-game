@@ -11,7 +11,8 @@
 [sub_resource type="Resource" id="Resource_8y4gf"]
 script = ExtResource("4_fx7je")
 asteroid = ExtResource("2_ooxxi")
-count = 20
+interval = 0.5
+count = 35
 angle_spread_deg = 360.0
 distance_base = 700.0
 distance_spread = 300.0
@@ -51,4 +52,5 @@ attack_schedule = SubResource("Resource_ee6o4")
 name = "Sharpshooter"
 global_gravity = 300.0
 health = 100
+description = "You are only given a sniper and must survive fast asteroids coming toward you."
 metadata/_custom_type_script = "uid://bjald2idwgjl"

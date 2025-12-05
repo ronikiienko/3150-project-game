@@ -27,6 +27,7 @@ func _asteroid_destroyed_handler(asteroid: Asteroid, destroyed_by: Node):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	HUD.set_available_speeds(level_conf.game_speeds, level_conf.default_speed_index)
+	Engine.time_scale = level_conf.game_speeds[level_conf.default_speed_index];
 	
 	_attack_system = AttackSystem.new()
 	_attack_system.attack_schedule = level_conf.attack_schedule

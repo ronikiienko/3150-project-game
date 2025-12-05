@@ -53,5 +53,6 @@ attack_schedule = SubResource("Resource_ee6o4")
 name = "Swarm"
 global_gravity = 300.0
 health = 100
+description = "In this level you are swarmed by many asteroids and must survive!"
 camera_speed = 600.0
 metadata/_custom_type_script = "uid://bjald2idwgjl"
