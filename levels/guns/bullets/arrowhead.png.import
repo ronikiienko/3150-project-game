@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3stxqas3n56a"
-path="res://.godot/imported/squarecore.png-b5cf6987fe4d1d185e7ca6f64c5a7297.ctex"
+uid="uid://dwfiqk736c0a1"
+path="res://.godot/imported/arrowhead.png-7e594f27b5d2aefdb0646bf7dabf884b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guns/bullets/squarecore.png"
-dest_files=["res://.godot/imported/squarecore.png-b5cf6987fe4d1d185e7ca6f64c5a7297.ctex"]
+source_file="res://levels/guns/bullets/arrowhead.png"
+dest_files=["res://.godot/imported/arrowhead.png-7e594f27b5d2aefdb0646bf7dabf884b.ctex"]
 
 [params]
 

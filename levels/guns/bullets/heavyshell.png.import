@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvbar1dfwlg55"
-path="res://.godot/imported/sniper.png-4426195a9233cac18c5eb2acf55f6fe9.ctex"
+uid="uid://ctjlwgwvcv1ey"
+path="res://.godot/imported/heavyshell.png-492ff44d3c422db298529520972c6aaf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guns/sniper.png"
-dest_files=["res://.godot/imported/sniper.png-4426195a9233cac18c5eb2acf55f6fe9.ctex"]
+source_file="res://levels/guns/bullets/heavyshell.png"
+dest_files=["res://.godot/imported/heavyshell.png-492ff44d3c422db298529520972c6aaf.ctex"]
 
 [params]
 

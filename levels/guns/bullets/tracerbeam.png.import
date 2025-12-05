@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0rvqypi8jwh4"
-path="res://.godot/imported/tracerbeam.png-dfa592705d3004124968a7cdfdfa0e46.ctex"
+path="res://.godot/imported/tracerbeam.png-6656abdcc9582b889951cb228d8b45ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guns/bullets/tracerbeam.png"
-dest_files=["res://.godot/imported/tracerbeam.png-dfa592705d3004124968a7cdfdfa0e46.ctex"]
+source_file="res://levels/guns/bullets/tracerbeam.png"
+dest_files=["res://.godot/imported/tracerbeam.png-6656abdcc9582b889951cb228d8b45ac.ctex"]
 
 [params]
 

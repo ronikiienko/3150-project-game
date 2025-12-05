@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwfiqk736c0a1"
-path="res://.godot/imported/arrowhead.png-ae3b8cabdcba62b335e2a8315c3a87fe.ctex"
+uid="uid://dvbar1dfwlg55"
+path="res://.godot/imported/sniper.png-67f5907e1c3d4f06d9f1f6aebcd8d912.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guns/bullets/arrowhead.png"
-dest_files=["res://.godot/imported/arrowhead.png-ae3b8cabdcba62b335e2a8315c3a87fe.ctex"]
+source_file="res://levels/guns/sniper.png"
+dest_files=["res://.godot/imported/sniper.png-67f5907e1c3d4f06d9f1f6aebcd8d912.ctex"]
 
 [params]
 

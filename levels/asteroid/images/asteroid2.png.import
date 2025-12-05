@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://30m3scj3dqau"
-path="res://.godot/imported/asteroid2.png-4663c8ada6e005add3dfcc3e3d6f2447.ctex"
+path="res://.godot/imported/asteroid2.png-dc9504160a1aa937b9a91942fb325276.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/attack_system/asteroid2.png"
-dest_files=["res://.godot/imported/asteroid2.png-4663c8ada6e005add3dfcc3e3d6f2447.ctex"]
+source_file="res://levels/asteroid/images/asteroid2.png"
+dest_files=["res://.godot/imported/asteroid2.png-dc9504160a1aa937b9a91942fb325276.ctex"]
 
 [params]
 

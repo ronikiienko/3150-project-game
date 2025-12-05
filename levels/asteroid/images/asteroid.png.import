@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctjlwgwvcv1ey"
-path="res://.godot/imported/heavyshell.png-80825831cec9390544c2a813448d411e.ctex"
+uid="uid://ikixufjtvomo"
+path="res://.godot/imported/asteroid.png-d3c8b6d0e18ec26597b38cd2dd05cb35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guns/bullets/heavyshell.png"
-dest_files=["res://.godot/imported/heavyshell.png-80825831cec9390544c2a813448d411e.ctex"]
+source_file="res://levels/asteroid/images/asteroid.png"
+dest_files=["res://.godot/imported/asteroid.png-d3c8b6d0e18ec26597b38cd2dd05cb35.ctex"]
 
 [params]
 

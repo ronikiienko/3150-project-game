@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="GunConf" load_steps=4 format=3 uid="uid://cao4rojsqkhw2"]
 
-[ext_resource type="Resource" uid="uid://d2f10c0ba6q17" path="res://guns/bullets/squarecore.tres" id="1_ccf1r"]
+[ext_resource type="Resource" uid="uid://d2f10c0ba6q17" path="res://levels/guns/bullets/squarecore.tres" id="1_ccf1r"]
 [ext_resource type="Script" uid="uid://cdo32m7p660ra" path="res://level_config/gun.gd" id="3_8kaqw"]
-[ext_resource type="Texture2D" uid="uid://bul8ailgibu6t" path="res://guns/twin.png" id="4_8iv5q"]
+[ext_resource type="Texture2D" uid="uid://bul8ailgibu6t" path="res://levels/guns/twin.png" id="4_8iv5q"]
 
 [resource]
 script = ExtResource("3_8kaqw")

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BulletConf" load_steps=3 format=3 uid="uid://sor0qqswwywc"]
 
 [ext_resource type="Script" uid="uid://bl7fgchouk2a2" path="res://level_config/bullet.gd" id="1_vx5ms"]
-[ext_resource type="Texture2D" uid="uid://b1epypsvlxerm" path="res://guns/bullets/diamond.png" id="2_yr1yh"]
+[ext_resource type="Texture2D" uid="uid://b1epypsvlxerm" path="res://levels/guns/bullets/diamond.png" id="2_yr1yh"]
 
 [resource]
 script = ExtResource("1_vx5ms")
